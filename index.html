@@ -1,0 +1,1600 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oxford 5000 C1 Revision Exercise (702-1402)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    :root {
+        /* Modern Dark Theme Palette */
+        --bg-gradient: radial-gradient(circle at top right, #1e293b, #0f172a);
+        --glass-bg: rgba(30, 41, 59, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --primary-accent: #6366f1; /* Indigo */
+        --primary-hover: #4f46e5;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --correct-color: #10b981; /* Emerald */
+        --incorrect-color: #f43f5e; /* Rose */
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-hover: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: var(--bg-gradient);
+        color: var(--text-main);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        line-height: 1.6;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+    }
+
+    .app-container {
+        width: 100%;
+        max-width: 850px;
+        background-color: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* decorative glow behind container */
+    .app-container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    header {
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 25px;
+        margin-bottom: 30px;
+    }
+
+    header h1 {
+        color: var(--primary-accent);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    header h2 {
+        font-size: 2.2rem;
+        margin: 10px 0;
+        font-weight: 700;
+        background: linear-gradient(to right, #fff, #cbd5e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    /* Screens */
+    #start-screen, #quiz-screen, #end-screen {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    #start-screen h3 {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+        font-weight: 500;
+    }
+
+    .question-count-options {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-hover));
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+        font-family: inherit;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+        filter: brightness(1.1);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    /* Quiz Header */
+    #quiz-screen .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        background: rgba(0,0,0,0.2);
+        padding: 12px 20px;
+        border-radius: 12px;
+        gap: 10px; /* Added gap for safety */
+    }
+
+    #question-counter, #score-counter {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        white-space: nowrap; /* Prevent text wrapping awkwardly */
+    }
+
+    #score-counter {
+        color: var(--primary-accent);
+    }
+
+    #return-btn {
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--text-muted);
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+        box-shadow: none;
+        white-space: nowrap; /* Keep button text on one line */
+    }
+    #return-btn:hover {
+        background: var(--card-hover);
+        color: white;
+        border-color: var(--text-muted);
+        transform: none;
+    }
+
+    /* Question Area */
+    #question-text {
+        font-size: 1.5rem;
+        line-height: 1.8;
+        margin: 40px 0;
+        min-height: 100px;
+        font-weight: 400;
+    }
+
+    .blank {
+        display: inline-block;
+        width: 140px;
+        border-bottom: 2px solid var(--primary-accent);
+        margin: 0 8px;
+        vertical-align: -5px;
+    }
+
+    /* Options Grid */
+    #options-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .option-btn {
+        width: 100%;
+        background-color: var(--card-bg);
+        color: var(--text-main);
+        border: 1px solid var(--glass-border);
+        padding: 20px;
+        border-radius: 16px;
+        font-size: 1.15rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .option-btn:hover:not(:disabled) {
+        background-color: var(--card-hover);
+        border-color: var(--primary-accent);
+        transform: translateY(-2px);
+    }
+
+    .option-btn.correct {
+        background-color: rgba(16, 185, 129, 0.15);
+        border-color: var(--correct-color);
+        color: var(--correct-color);
+        font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+        background-color: rgba(244, 63, 94, 0.15);
+        border-color: var(--incorrect-color);
+        color: var(--incorrect-color);
+        opacity: 0.8;
+    }
+
+    .option-btn:disabled {
+        cursor: default;
+        transform: none !important;
+    }
+
+    /* Feedback Area */
+    #feedback-container {
+        min-height: 60px;
+        margin-top: 25px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 10px;
+    }
+
+    #next-btn {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* End Screen */
+    #end-screen h2 {
+        font-size: 2rem;
+        color: var(--text-main);
+    }
+
+    #final-score {
+        font-size: 4rem;
+        font-weight: 800;
+        background: linear-gradient(to bottom right, var(--primary-accent), #a5b4fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 10px 0;
+        line-height: 1;
+    }
+
+    #end-comment {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+        font-weight: 300;
+    }
+
+    /* Revision List */
+    #revision-container {
+        margin-top: 40px;
+        text-align: left;
+        max-height: 400px;
+        overflow-y: auto;
+        border-top: 1px solid var(--glass-border);
+        padding: 30px 10px 10px 10px;
+    }
+
+    #revision-container h3 {
+        margin-top: 0;
+        color: var(--text-main);
+        font-weight: 600;
+    }
+
+    #revision-list .revision-item {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        border-left: 4px solid var(--primary-accent);
+        transition: background-color 0.2s;
+    }
+
+    #revision-list .revision-item:hover {
+        background-color: var(--card-hover);
+    }
+
+    #revision-list .revision-item p {
+        margin: 0 0 8px 0;
+        line-height: 1.5;
+    }
+
+    #revision-list .revision-item .word-info {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary-accent);
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+    }
+
+    #revision-list .revision-item .word-info span {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+
+    #revision-list .revision-item .sentence-info {
+        color: var(--text-main);
+        font-style: italic;
+        opacity: 0.9;
+    }
+
+    #revision-list .revision-item .sentence-info strong {
+        color: var(--correct-color);
+        font-style: normal;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: rgba(16, 185, 129, 0.4);
+        text-underline-offset: 4px;
+    }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--glass-border);
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+        .app-container {
+            padding: 25px 20px;
+            border-radius: 0;
+            min-height: 100vh;
+            border: none;
+        }
+        body {
+            padding: 0;
+        }
+        header h2 {
+            font-size: 1.6rem;
+        }
+        
+        /* Revised Quiz Header for Mobile */
+        #quiz-screen .quiz-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 10px 15px; /* row gap 10px, col gap 15px */
+            padding: 15px;
+        }
+
+        #question-counter {
+            grid-column: 1;
+            grid-row: 1;
+            text-align: left;
+        }
+
+        #score-counter {
+            grid-column: 2;
+            grid-row: 1;
+            text-align: right;
+        }
+
+        #return-btn {
+            grid-column: 1 / -1; /* Span full width */
+            grid-row: 2;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        #question-text {
+            font-size: 1.25rem;
+        }
+        #options-container {
+            grid-template-columns: 1fr;
+        }
+        .option-btn {
+            padding: 16px;
+            font-size: 1rem;
+        }
+        .blank {
+            width: 80px;
+        }
+        .question-count-options .btn {
+            padding: 10px 20px;
+            flex: 1 1 30%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1>K S Lo English</h1>
+        <h2>Oxford 5000 C1<br>Revision Exercise</h2>
+        <p>Words 702 (invoke) - 1402 (youngster)</p>
+    </header>
+
+    <main>
+        <div id="start-screen">
+            <h3>How many questions would you like to attempt?</h3>
+            <div class="question-count-options">
+                <button class="btn" onclick="startGame(10)">10</button>
+                <button class="btn" onclick="startGame(20)">20</button>
+                <button class="btn" onclick="startGame(30)">30</button>
+                <button class="btn" onclick="startGame(40)">40</button>
+                <button class="btn" onclick="startGame(50)">50</button>
+                <button class="btn" onclick="startGame(100)">100</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen">
+            <div class="quiz-header">
+                <div id="question-counter"></div>
+                <div id="score-counter"></div>
+                <button id="return-btn" class="btn">Return to Title</button>
+            </div>
+            <p id="question-text"></p>
+            <div id="options-container"></div>
+            <div id="feedback-container"></div>
+            <button id="next-btn" class="btn" style="display: none;">Next Question</button>
+        </div>
+
+        <div id="end-screen">
+            <h2>Quiz Complete!</h2>
+            <p>You scored:</p>
+            <div id="final-score"></div>
+            <p id="end-comment"></p>
+            <button id="restart-btn" class="btn">Start Again</button>
+            <div id="revision-container" style="display: none;">
+                <h3>Review Your Answers</h3>
+                <div id="revision-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © <span id="copyright-year"></span> K S Lo English. All Rights Reserved.
+    </footer>
+</div>
+
+<script>
+    // Raw data from CSV (702-1402)
+    const rawData = [
+        {id: 702, w: "invoke", p: "v", d: "援引，借助（法律）", s: "Police can invoke the law to regulate access to these places."},
+        {id: 703, w: "involvement", p: "n", d: "參與", s: "The team's continued involvement in the competition is uncertain."},
+        {id: 704, w: "ironic", p: "adj", d: "具有諷刺意味的；出乎意料的；令人啼笑皆非的", s: "It is ironic that although many items are now cheaper to make, fewer people can afford to buy them."},
+        {id: 705, w: "ironically", p: "adv", d: "具有諷刺意味地", s: "He smiled ironically."},
+        {id: 706, w: "irony", p: "n", d: "具有諷刺意味的情況；出乎意料的情況；令人啼笑皆非的事情", s: "The irony (of it) is that the new tax system will burden those it was intended to help."},
+        {id: 707, w: "irrelevant", p: "adj", d: "不相關的，不切題的", s: "These documents are largely irrelevant to the present investigation."},
+        {id: 708, w: "isolation", p: "n", d: "隔離；分離；孤獨", s: "The prisoner had been kept in isolation for three days."},
+        {id: 709, w: "judicial", p: "adj", d: "司法的；審判（上）的", s: "The country's judicial system has undergone significant reforms in recent years."},
+        {id: 710, w: "junction", p: "n", d: "聯結點；樞紐；（公路的）交叉口；（鐵路）聯絡車站", s: "You should slow down as you approach the junction."},
+        {id: 711, w: "jurisdiction", p: "n", d: "司法權；管轄權；審判權", s: "The court has no jurisdiction in/over cases of this kind."},
+        {id: 712, w: "just", p: "adj", d: "公正的，公平的；正義的", s: "The judge's sentence was perfectly just in the circumstances."},
+        {id: 713, w: "justification", p: "n", d: "正當的理由；辯解", s: "There is no justification for treating people so badly."},
+        {id: 714, w: "kidnap", p: "v", d: "綁架；劫持", s: "The wife of a businessman was kidnapped from her home in London last night."},
+        {id: 715, w: "kidney", p: "n", d: "腎，腎臟", s: "He had to undergo regular dialysis because of his kidney failure."},
+        {id: 716, w: "kingdom", p: "n", d: "王國", s: "The United Kingdom of Great Britain and Northern Ireland is a sovereign state."},
+        {id: 717, w: "lad", p: "n", d: "男孩；少年；小夥子", s: "A group of young lads were standing outside the shop."},
+        {id: 718, w: "landlord", p: "n", d: "房東；地主", s: "The landlord had promised to redecorate the bedrooms before we moved in."},
+        {id: 719, w: "landmark", p: "n", d: "地標；標誌性建築", s: "The Rock of Gibraltar is one of Europe's most famous landmarks."},
+        {id: 720, w: "lap", p: "n", d: "（坐著時的）大腿部", s: "Come and sit on my lap and I'll read you a story."},
+        {id: 721, w: "large-scale", p: "adj", d: "大規模的", s: "We must improve our response to large-scale natural disasters."},
+        {id: 722, w: "laser", p: "n", d: "雷射（器）", s: "The surgeon used a precise laser beam to perform the delicate eye operation."},
+        {id: 723, w: "latter", p: "adj", d: "後半程的，靠後的，末尾的", s: "Building of the new library should begin in the latter part of next year."},
+        {id: 724, w: "latter", p: "n", d: "（提及的兩者中的）後者", s: "She offered me more money or a car and I chose the latter."},
+        {id: 725, w: "lawn", p: "n", d: "（尤指房屋附近或公園的）草地，草坪", s: "Will you mow the lawn at the weekend?"},
+        {id: 726, w: "lawsuit", p: "n", d: "訴訟", s: "Two of the directors filed a lawsuit against their former employer."},
+        {id: 727, w: "layout", p: "n", d: "佈局，佈置，排列", s: "I like the layout of the house."},
+        {id: 728, w: "leak", p: "v", d: "（液體或氣體）漏，洩漏", s: "Water was leaking from the pipe."},
+        {id: 729, w: "leak", p: "n", d: "漏洞，洩漏處；漏出物", s: "There's water on the floor - we must have a leak."},
+        {id: 730, w: "leap", p: "v", d: "跳，跳躍", s: "He leaped out of his car and ran towards the house."},
+        {id: 731, w: "leap", p: "n", d: "巨變；激增；提高", s: "The company saw a huge leap in profits after launching its new product."},
+        {id: 732, w: "legacy", p: "n", d: "遺産，遺贈", s: "An elderly cousin had left her a small legacy."},
+        {id: 733, w: "legendary", p: "adj", d: "名聲顯赫的；津津樂道的", s: "He became editor of the legendary Irish journal \"The Bell\"."},
+        {id: 734, w: "legislation", p: "n", d: "法律；立法", s: "The government has promised to introduce legislation to limit fuel emissions from cars."},
+        {id: 735, w: "legislative", p: "adj", d: "法律的；立法的", s: "The European Parliament will have greater legislative powers (= ability to make laws)."},
+        {id: 736, w: "legislature", p: "n", d: "立法機構", s: "The bill will be debated by the state legislature next month."},
+        {id: 737, w: "legitimate", p: "adj", d: "合法的，正當的，法律允許的", s: "The army must give power back to the legitimate government."},
+        {id: 738, w: "lengthy", p: "adj", d: "漫長的，冗長的", s: "After a lengthy discussion, the committee finally reached a decision on the matter."},
+        {id: 739, w: "lesbian", p: "adj", d: "女同性戀者", s: "The community centre provides a safe and supportive space for gay and lesbian youth."},
+        {id: 740, w: "lesser", p: "adj", d: "較小的，較少的；次要的", s: "A lesser man (= a man who was not as strong or brave) might have given up at that point."},
+        {id: 741, w: "lethal", p: "adj", d: "致命的；極其危險的", s: "Three minutes after the fire started, the house was full of lethal fumes."},
+        {id: 742, w: "liable", p: "adj", d: "承擔責任的；負有（法律）責任的", s: "The law holds parents liable if a child does not attend school."},
+        {id: 743, w: "liberal", p: "adj", d: "自由開放的，開放的，開明的", s: "He holds very liberal views when it comes to social and political issues."},
+        {id: 744, w: "liberal", p: "n", d: "自由主義者", s: "He's a good old-fashioned liberal."},
+        {id: 745, w: "liberation", p: "n", d: "解放；解脫", s: "The liberation of the city was celebrated with parades and joyful festivities."},
+        {id: 746, w: "liberty", p: "n", d: "自由", s: "For most citizens, liberty means the freedom to practise their religious or political beliefs."},
+        {id: 747, w: "license", p: "v", d: "許可，授權，特許", s: "Several companies have been licensed to sell these products."},
+        {id: 748, w: "lifelong", p: "adj", d: "終生的，終身的；一輩子的", s: "She was a lifelong member of the Labour party."},
+        {id: 749, w: "likelihood", p: "n", d: "可能，可能性", s: "This latest dispute greatly increases the likelihood of a strike."},
+        {id: 750, w: "limb", p: "n", d: "肢體；樹枝，樹杈", s: "The accident victims mostly had injuries to their lower limbs (= legs)."},
+        {id: 751, w: "linear", p: "adj", d: "線的，直線的，線性的", s: "The story follows a linear progression from his childhood to his adult years."},
+        {id: 752, w: "line-up", p: "n", d: "隊伍；陣容", s: "Several important changes are expected in the line-up for Thursday's game."},
+        {id: 753, w: "linger", p: "v", d: "停留，逗留；徘徊", s: "After the play had finished, we lingered for a while in the bar hoping to catch sight of the actors."},
+        {id: 754, w: "listing", p: "n", d: "（報刊等的）娛樂資訊，演出資訊", s: "I'll check the TV listings to see what's on tonight."},
+        {id: 755, w: "literacy", p: "n", d: "識字，讀寫能力", s: "Far more resources are needed to improve adult literacy."},
+        {id: 756, w: "liver", p: "n", d: "肝，肝臟", s: "Symptoms of the disease include an enlarged spleen or liver."},
+        {id: 757, w: "lobby", p: "n", d: "遊說團體，遊說集團", s: "The powerful oil lobby has a significant influence on government energy policy."},
+        {id: 758, w: "lobby", p: "v", d: "遊說，試圖說服（政客、政府或官方團體）", s: "Small businesses have lobbied hard for/against changes in the tax laws."},
+        {id: 759, w: "log", p: "n", d: "（尤指燒火用的）圓木，木材", s: "When I lifted the log, there were lots of beetles skittering about/around under it."},
+        {id: 760, w: "log", p: "v", d: "伐（木），砍（樹）", s: "The forest has been so heavily logged that it is in danger of disappearing."},
+        {id: 761, w: "logic", p: "n", d: "邏輯思維，理性思維", s: "I fail to see the logic behind his argument."},
+        {id: 762, w: "long-standing", p: "adj", d: "由來已久的，長期存在的", s: "The two countries have a long-standing agreement to cooperate on security matters."},
+        {id: 763, w: "long-time", p: "adj", d: "長久的，長期的", s: "A long-time friend of the chairman said she had expected the resignation."},
+        {id: 764, w: "loom", p: "v", d: "（令人驚恐地）隱約顯現；赫然聳現", s: "Dark storm clouds loomed on the horizon."},
+        {id: 765, w: "loop", p: "n", d: "圓圈，環形", s: "She threaded the leather belt through the loops on her new jeans."},
+        {id: 766, w: "loyalty", p: "n", d: "忠誠，忠實", s: "His loyalty was never in question."},
+        {id: 767, w: "machinery", p: "n", d: "（大型的）機器；機械；（機器的）運轉部分", s: "The factory was filled with the noise of heavy industrial machinery."},
+        {id: 768, w: "magical", p: "adj", d: "有魔力的；用魔法的", s: "Diamonds were once thought to have magical powers."},
+        {id: 769, w: "magistrate", p: "n", d: "（審理輕微案件的）地方法官", s: "He will appear before the magistrates tomorrow."},
+        {id: 770, w: "magnetic", p: "adj", d: "磁的，有磁性的；磁化的", s: "The small needle on the compass is attracted to the Earth's magnetic field."},
+        {id: 771, w: "magnitude", p: "n", d: "巨大；重大，重要性", s: "They don't seem to grasp the magnitude of the problem."},
+        {id: 772, w: "mainland", p: "n", d: "大陸；本土", s: "They recently bulit a bridge between the mainland and the closest island."},
+        {id: 773, w: "mainstream", p: "n", d: "主流（多數人的生活方式或信仰）", s: "The new law should allow more disabled people to enter the mainstream of American life."},
+        {id: 774, w: "mainstream", p: "adj", d: "（思維、思想或信念等）主流的", s: "This is the director's first mainstream Hollywood film."},
+        {id: 775, w: "maintenance", p: "n", d: "維護，保養（保持道路、建築、機器設備等處於良好狀態的工作）", s: "Old houses need a lot of maintenance."},
+        {id: 776, w: "mandate", p: "n", d: "授權；委任", s: "At the forthcoming elections, the government will be seeking a fresh mandate from the people."},
+        {id: 777, w: "mandatory", p: "adj", d: "強制的；必須履行的；法定的", s: "The minister is calling for mandatory prison sentences for people who assault police officers."},
+        {id: 778, w: "manifest", p: "v", d: "顯示；表現；表明", s: "The workers chose to manifest their dissatisfaction in a series of strikes."},
+        {id: 779, w: "manipulate", p: "v", d: "（常指以不正當手段）操縱，控制", s: "Throughout her career she has very successfully manipulated the media."},
+        {id: 780, w: "manipulation", p: "n", d: "操縱（為了個人利益而控制某人或某事，尤指利用不公平或不誠實的方式）", s: "They have been accused of fraud and stock market manipulations."},
+        {id: 781, w: "manuscript", p: "n", d: "手稿；原稿", s: "He sent the 400-page manuscript to his publisher."},
+        {id: 782, w: "march", p: "n", d: "抗議遊行，示威遊行", s: "She's going on a march on Saturday in protest over the closure of the hospital."},
+        {id: 783, w: "march", p: "v", d: "（常因生氣而）快步走", s: "She marched into my office and demanded to know why I hadn't written my report."},
+        {id: 784, w: "marginal", p: "adj", d: "微小的；少量的", s: "The report suggests that there has only been a marginal improvement in women's pay over the past few years."},
+        {id: 785, w: "marine", p: "adj", d: "海（洋）的；航海的；海運的", s: "The oil slick seriously threatens marine life around the islands."},
+        {id: 786, w: "marketplace", p: "n", d: "市場機制；市場形勢", s: "To remain competitive the company has to be able to adapt to the changing marketplace."},
+        {id: 787, w: "mask", p: "n", d: "面具，面罩", s: "The bank robber wore a mask to hide his identity from the cameras."},
+        {id: 788, w: "massacre", p: "n", d: "大屠殺；殘殺", s: "He ordered the massacre of 2,000 women and children."},
+        {id: 789, w: "mathematical", p: "adj", d: "數學的", s: "Solving the complex problem required the use of an advanced mathematical formula."},
+        {id: 790, w: "mature", p: "adj", d: "成熟的", s: "He's very mature for his age."},
+        {id: 791, w: "mature", p: "v", d: "變成熟", s: "Girls are said to mature faster than boys."},
+        {id: 792, w: "maximize", p: "v", d: "使最大化；使最重要", s: "Some airlines have cancelled less popular routes in an effort to maximize profits."},
+        {id: 793, w: "meaningful", p: "adj", d: "富有意義的，意味深長的", s: "They had a meaningful conversation about their future plans together."},
+        {id: 794, w: "meantime", p: "n", d: "在此期間；（與此）同時", s: "Your computer won't arrive till Thursday. In the meantime, you can use Jude's."},
+        {id: 795, w: "medieval", p: "adj", d: "中世紀（約西元600年至1500年間）的，中古時代的", s: "The tourists visited the medieval castle that overlooked the entire town."},
+        {id: 796, w: "meditation", p: "n", d: "默念，冥想", s: "She practices daily meditation to help reduce stress and improve her focus."},
+        {id: 797, w: "melody", p: "n", d: "旋律；曲調", s: "He played a few well-known melodies."},
+        {id: 798, w: "memo", p: "n", d: "備忘錄；備忘便條", s: "Did you get my memo about the meeting?"},
+        {id: 799, w: "memoir", p: "n", d: "傳記，傳略", s: "She has written a memoir of her encounters with famous movie stars over the years."},
+        {id: 800, w: "memorial", p: "n", d: "紀念物；紀念碑", s: "A large memorial was built to honor the soldiers who died in the war."},
+        {id: 801, w: "mentor", p: "n", d: "導師，指導者，顧問", s: "She was a friend and mentor to many young actors starting their careers."},
+        {id: 802, w: "merchant", p: "n", d: "商人；（尤指外貿）批發商", s: "The wealthy merchant imported fine silks and spices from the Far East to sell."},
+        {id: 803, w: "mercy", p: "n", d: "慈悲，憐憫；仁慈，寬容", s: "She appealed to the judge to have mercy on her husband during the trial."},
+        {id: 804, w: "mere", p: "adj", d: "（用於強調不大，不重要或效果不大）只不過的，僅僅的", s: "The plane crashed mere minutes after take-off."},
+        {id: 805, w: "merely", p: "adv", d: "（用於強調所說的即為所想表達的）僅僅，只，不過", s: "I wasn't complaining, I merely said that I was tired."},
+        {id: 806, w: "merge", p: "v", d: "（使）合併；（使）融合", s: "They decided to merge the two companies into one."},
+        {id: 807, w: "merger", p: "n", d: "（公司、企業等的）合併", s: "She's an attorney who advises companies about mergers and takeovers."},
+        {id: 808, w: "merit", p: "n", d: "優點；價值；功績", s: "The entertaining film had very little artistic merit to speak of."},
+        {id: 809, w: "methodology", p: "n", d: "一套方法；方法論；教學法", s: "The methodology and findings of the research team have been criticized."},
+        {id: 810, w: "midst", p: "n", d: "中間，當中，中央", s: "She caught sight of Johnny in their midst, laughing and talking."},
+        {id: 811, w: "migration", p: "n", d: "（動物應季節變化而作出的）遷徙，移棲", s: "Christmas Island is known for its annual migration of 50 million bright red land crabs from the forest to the sea."},
+        {id: 812, w: "militant", p: "n", d: "激進分子", s: "Student militants were fighting with the police."},
+        {id: 813, w: "militant", p: "adj", d: "激進的；行動積極的；好戰的，好鬥的", s: "The militant group has claimed responsibility for the recent series of attacks."},
+        {id: 814, w: "militia", p: "n", d: "民兵組織；預備役部隊；國民衛隊", s: "A UN force was sent in to stop fighting between three rival militias."},
+        {id: 815, w: "mill", p: "n", d: "磨坊，碾磨廠，磨粉廠", s: "The old mill has been converted into apartments."},
+        {id: 816, w: "minimal", p: "adj", d: "極小的；極少的", s: "There were no injuries and damage to the building was minimal."},
+        {id: 817, w: "minimize", p: "v", d: "使降到最低限度；使減到最少", s: "We must minimize the risk of infection."},
+        {id: 818, w: "mining", p: "n", d: "採礦；礦業", s: "The country's economy is heavily dependent on its large coal mining industry."},
+        {id: 819, w: "ministry", p: "n", d: "（政府的）部", s: "He got a job working for the Ministry of Defence after graduating from university."},
+        {id: 820, w: "minute", p: "adj", d: "微小的，極小的", s: "A minute amount of poison can be fatal if ingested."},
+        {id: 821, w: "miracle", p: "n", d: "奇跡", s: "Jesus Christ was said to have performed miracles like turning water into wine."},
+        {id: 822, w: "misery", p: "n", d: "痛苦，悲慘", s: "We have witnessed the most appalling scenes of human misery."},
+        {id: 823, w: "misleading", p: "adj", d: "誤導的；引入歧途的；讓人產生錯誤觀念的", s: "The advertisement was banned for containing misleading information about the product's benefits."},
+        {id: 824, w: "missile", p: "n", d: "導彈，飛彈", s: "The warship fired a long-range missile that successfully struck the intended enemy target."},
+        {id: 825, w: "mob", p: "n", d: "暴民，亂民", s: "The angry mob outside the jail was ready to riot."},
+        {id: 826, w: "mobility", p: "n", d: "活動性；流動性", s: "Some neck injuries cause total loss of mobility below the point of injury."},
+        {id: 827, w: "mobilize", p: "v", d: "組織；動員；調動", s: "Representatives for all the main candidates are trying to mobilize voter support."},
+        {id: 828, w: "moderate", p: "adj", d: "中等的；不過分的，適度的", s: "The cabin is of moderate size - just right for a small family."},
+        {id: 829, w: "modification", p: "n", d: "改變，修改", s: "Modification of the engine to run on lead-free fuel is fairly simple."},
+        {id: 830, w: "momentum", p: "n", d: "動量，衝量；衝力；推動力；動力", s: "Once you push it, it keeps going under its own momentum."},
+        {id: 831, w: "monk", p: "n", d: "修道士；僧侶", s: "The Buddhist monk spent many hours each day in quiet prayer and meditation."},
+        {id: 832, w: "monopoly", p: "n", d: "壟斷（機構）；專賣；獨佔", s: "The government is determined to protect its tobacco monopoly."},
+        {id: 833, w: "morality", p: "n", d: "道德體系，道德觀", s: "They argued for a new morality based on self-sacrifice and honesty."},
+        {id: 834, w: "motive", p: "n", d: "動機；（行動的）緣由；目的", s: "Why would she have killed him? She has no motive."},
+        {id: 835, w: "motorist", p: "n", d: "開汽車的人，駕駛者", s: "A passing motorist stopped and gave her a lift to the nearby town."},
+        {id: 836, w: "municipal", p: "adj", d: "市政的；市立的", s: "The city's municipal government is responsible for providing essential services like waste collection."},
+        {id: 837, w: "mutual", p: "adj", d: "相互的，彼此的；共同的，共有的", s: "Theirs was a partnership based on mutual respect, trust and understanding."},
+        {id: 838, w: "namely", p: "adv", d: "即，也就是說", s: "We need to get more teachers into the classrooms where they're most needed, namely in high poverty areas."},
+        {id: 839, w: "nationwide", p: "adj", d: "全國性的，全國範圍的", s: "The company launched a nationwide advertising campaign to promote its new line of products."},
+        {id: 840, w: "naval", p: "adj", d: "海軍的；軍艦的", s: "The historic naval battle took place between the powerful British and French fleets."},
+        {id: 841, w: "neglect", p: "v", d: "疏忽照顧；忽視，疏忽", s: "He began to neglect his important studies and his grades started to drop significantly."},
+        {id: 842, w: "neglect", p: "n", d: "疏忽，忽視；疏忽照顧", s: "Both parents were found guilty of neglect and their child was taken away from them."},
+        {id: 843, w: "neighbouring", p: "adj", d: "鄰近的，相鄰的", s: "We often go shopping in the neighbouring town because it has better stores."},
+        {id: 844, w: "nest", p: "n", d: "（鳥類或昆蟲的）窩，巢；（某些動物的）穴", s: "The mother bird carefully built a nest high up in the tree branches."},
+        {id: 845, w: "net", p: "adj", d: "淨得的，純的", s: "I earn $50,000 gross, but my net income is about $36,000."},
+        {id: 846, w: "newsletter", p: "n", d: "（機構定期寄發給成員的）通訊，簡報", s: "The club sends out a monthly newsletter to keep all its members informed."},
+        {id: 847, w: "niche", p: "n", d: "（尤指本人合意的）適合的工作（或職位）；稱心的工作", s: "He has carved a niche for himself as a financial advisor."},
+        {id: 848, w: "noble", p: "adj", d: "高尚的，偉大的，崇高的", s: "It was a noble gesture for him to donate his entire fortune to charity."},
+        {id: 849, w: "nod", p: "v", d: "點頭；（尤指）點頭贊同，點頭致意，點頭示意", s: "Many people in the audience nodded in agreement."},
+        {id: 850, w: "nominate", p: "v", d: "（為選舉、工作、職位或榮譽）提名，推薦", s: "He's been nominated by the Green Party as their candidate in the next election."},
+        {id: 851, w: "nomination", p: "n", d: "提名，推薦", s: "There have been two nominations for the new job."},
+        {id: 852, w: "nominee", p: "n", d: "被提名者", s: "All nominees for Treasurer will be considered."},
+        {id: 853, w: "nonetheless", p: "adv", d: "然而，但是；儘管", s: "There are serious problems in our country. Nonetheless, we feel this is a good time to return."},
+        {id: 854, w: "non-profit", p: "adj", d: "（機構）非營利性的", s: "We are a non-profit organization dedicated to the conservation of ocean mammals."},
+        {id: 855, w: "nonsense", p: "n", d: "愚蠢的想法；謬論；胡扯；胡鬧", s: "This report is nonsense and nothing but a waste of paper."},
+        {id: 856, w: "noon", p: "n", d: "正午，中午", s: "We used to ski before noon and then have a long lunch."},
+        {id: 857, w: "notable", p: "adj", d: "顯要的；顯著的；值得注意的", s: "The museum houses a notable collection of rare plants from around the world."},
+        {id: 858, w: "notably", p: "adv", d: "格外地，特別地", s: "The company is beginning to attract investors, most notably big Japanese banks."},
+        {id: 859, w: "notify", p: "v", d: "（正式）通知，告知", s: "The school is required to notify parents if their children fail to come to school."},
+        {id: 860, w: "notorious", p: "adj", d: "臭名昭著的，聲名狼藉的", s: "He was one of Mexico's most notorious criminals."},
+        {id: 861, w: "novel", p: "adj", d: "新穎的，新奇的", s: "She came up with a novel idea for recycling plastic waste into building materials."},
+        {id: 862, w: "nursery", p: "n", d: "幼兒園，托兒所", s: "Does Jake go to a nursery or a childminder?"},
+        {id: 863, w: "objection", p: "n", d: "反對，不贊成；有異議", s: "Her objection to the plan is based on incorrect facts."},
+        {id: 864, w: "oblige", p: "v", d: "責成；強迫，迫使", s: "The law obliges companies to pay decent wages to their employees."},
+        {id: 865, w: "obsess", p: "v", d: "（使）著迷；（使）困擾；（使）牽掛；（使）縈迴於心", s: "The whole relationship obsessed me for years."},
+        {id: 866, w: "obsession", p: "n", d: "困擾；無法擺脫的念頭；念念不忘的事（或人）", s: "He has an unhealthy obsession with death and dying."},
+        {id: 867, w: "occasional", p: "adj", d: "偶爾的；不經常的", s: "I play the occasional game of tennis."},
+        {id: 868, w: "occurrence", p: "n", d: "發生的事；事件；遭遇", s: "Street-fights are an everyday occurrence in this area of the city."},
+        {id: 869, w: "odds", p: "n", d: "可能性，機會；幾率，概率", s: "If you drive a car all your life, the odds are that you'll have an accident at some point."},
+        {id: 870, w: "offering", p: "n", d: "禮物；供物，祭品", s: "As a peace offering, he brought his angry neighbour a box of chocolates."},
+        {id: 871, w: "offspring", p: "n", d: "（動物的）幼崽，崽獸", s: "In the case of the guinea pig, the number of offspring varies between two and five."},
+        {id: 872, w: "operational", p: "adj", d: "工作上的；經營上的；運作上的；實施上的", s: "There are operational advantages in putting sales and admin in the same building."},
+        {id: 873, w: "opt", p: "v", d: "選擇，挑選；（尤指）優先選擇", s: "Mike opted for early retirement."},
+        {id: 874, w: "optical", p: "adj", d: "光學的；視覺的；視力的", s: "The artist uses mirrors to create a clever optical illusion in her latest work."},
+        {id: 875, w: "optimism", p: "n", d: "樂觀；樂觀主義", s: "There was a note of optimism in his voice as he spoke about the company's future."},
+        {id: 876, w: "oral", p: "adj", d: "口頭的；口述的", s: "The students had to pass both a written test and an oral exam."},
+        {id: 877, w: "organizational", p: "adj", d: "組織的", s: "We think this is a good way of reaching our organizational goals."},
+        {id: 878, w: "orientation", p: "n", d: "（某人的）特別喜好，價值取向，信仰觀念", s: "We employ people without regard to their political or sexual orientation."},
+        {id: 879, w: "originate", p: "v", d: "起源，發源，發端；產生", s: "Although the technology originated in the UK, it has been developed in the US."},
+        {id: 880, w: "outbreak", p: "n", d: "（尤指疾病、危險或不快之事的）發作，暴發，突然發生", s: "An outbreak of food poisoning was reported in the local media yesterday."},
+        {id: 881, w: "outing", p: "n", d: "短途旅遊，遠足；外出參觀", s: "Every year the professor takes her students on an outing to the archives of the Library of Congress."},
+        {id: 882, w: "outlet", p: "n", d: "（尤指管道或洞口的）出口，排放孔", s: "The factory has a large outlet pipe that releases treated water into the river."},
+        {id: 883, w: "outlook", p: "n", d: "前景；展望", s: "The outlook for the economy is bleak."},
+        {id: 884, w: "outrage", p: "n", d: "憤慨，義憤", s: "These murders have provoked outrage across the country."},
+        {id: 885, w: "outrage", p: "v", d: "（尤指不公平的行為或言論）使感到義憤，使憤慨，激怒", s: "Local people were outraged at the bombing."},
+        {id: 886, w: "outsider", p: "n", d: "局外人；外來者；外部的人", s: "Outsiders have a glamorized idea of what it is like to work in Hollywood."},
+        {id: 887, w: "overlook", p: "v", d: "眺望；（尤指）俯瞰，俯視", s: "Our hotel room overlooked the harbour."},
+        {id: 888, w: "overly", p: "adv", d: "太；非常；過度地，極度地", s: "Earlier sales forecasts were overly optimistic."},
+        {id: 889, w: "oversee", p: "v", d: "監督；監察；監管", s: "As marketing manager, her job is to oversee all the company's advertising."},
+        {id: 890, w: "overturn", p: "v", d: "打翻，弄翻；（使）傾覆；（使）翻倒", s: "The car skidded off the road, hit a tree and overturned."},
+        {id: 891, w: "overwhelm", p: "v", d: "（用武力）制服，擊敗，征服", s: "Government troops have overwhelmed the rebels and seized control of the capital."},
+        {id: 892, w: "overwhelming", p: "adj", d: "難以抵擋的；無法抗拒的", s: "She felt an overwhelming urge to tell someone about what had happened."},
+        {id: 893, w: "pad", p: "n", d: "墊，襯墊；護墊", s: "He wore a thick pad on his elbow to protect it during the game."},
+        {id: 894, w: "parameter", p: "n", d: "決定因素；界限；範圍；規範", s: "The researchers must keep within the parameters of the experiment."},
+        {id: 895, w: "parental", p: "adj", d: "父母的；父親的；母親的", s: "The school requires parental consent for students to go on the field trip."},
+        {id: 896, w: "parish", p: "n", d: "（某些基督教會中主教管區下有自己教堂的）教區；行政教區（英格蘭的基層行政單位）", s: "The local parish priest is a very popular and respected member of the community."},
+        {id: 897, w: "parliamentary", p: "adj", d: "議會的，國會的", s: "There will be a parliamentary debate on the new environmental bill next week."},
+        {id: 898, w: "partial", p: "adj", d: "不完全的，部分的", s: "The general has ordered a partial withdrawal of troops from the area."},
+        {id: 899, w: "partially", p: "adv", d: "不完全地", s: "The meat was only partially cooked."},
+        {id: 900, w: "passing", p: "n", d: "（時間的）流逝，過去", s: "My parents seem to have mellowed with the passing of the years."},
+        {id: 901, w: "passive", p: "adj", d: "被動的，消極的；順從的", s: "He's very passive in the relationship."},
+        {id: 902, w: "pastor", p: "n", d: "（尤指基督教新教的）牧師", s: "He was ordained a pastor in the Lutheran Church."},
+        {id: 903, w: "patch", p: "n", d: "（與周圍不同的）斑，小塊", s: "Our dog has a black patch on his back."},
+        {id: 904, w: "patent", p: "n", d: "專利權", s: "In 1880 Alexander Graham Bell was granted a patent on an apparatus for signalling and communicating called a Photophone."},
+        {id: 905, w: "pathway", p: "n", d: "小路，小徑，道路", s: "New pedestrian pathways are being built alongside the road."},
+        {id: 906, w: "patrol", p: "n", d: "巡邏，巡查", s: "The night guard makes a patrol of the empty building every hour."},
+        {id: 907, w: "patrol", p: "v", d: "（尤指士兵或員警）巡邏，巡查", s: "The whole town is patrolled by police because of the possibility of riots."},
+        {id: 908, w: "patron", p: "n", d: "贊助者，資助人", s: "The Princess Royal is a well-known patron of several charities."},
+        {id: 909, w: "peak", p: "n", d: "最高點，高峰", s: "Prices reach a peak during August."},
+        {id: 910, w: "peasant", p: "n", d: "（通常指舊時或貧窮國家的）農民，農夫", s: "Tons of internationally donated food was distributed to the starving peasants."},
+        {id: 911, w: "peculiar", p: "adj", d: "奇怪的，古怪的", s: "She has the most peculiar ideas."},
+        {id: 912, w: "persist", p: "v", d: "持續；存留", s: "If the pain persists, consult a doctor."},
+        {id: 913, w: "persistent", p: "adj", d: "持續的；存留的；頑強存在的", s: "He has had a persistent cough for several weeks now."},
+        {id: 914, w: "personnel", p: "n", d: "（公司、組織或軍隊的）全體人員，員工，職員", s: "The new director is likely to make major changes in personnel."},
+        {id: 915, w: "petition", p: "n", d: "請願書", s: "I signed a petition against the proposed closure of the local hospital today."},
+        {id: 916, w: "philosopher", p: "n", d: "哲學家", s: "Plato was a Greek philosopher."},
+        {id: 917, w: "philosophical", p: "adj", d: "哲學的；研究哲學的", s: "They had a long philosophical discussion about the meaning of life."},
+        {id: 918, w: "physician", p: "n", d: "醫生；（尤指）內科醫生", s: "Dr Dennett is a practicing family physician in Atlanta."},
+        {id: 919, w: "pioneer", p: "n", d: "先驅，先鋒，創始人", s: "She was a true pioneer of modern medicine, developing several new surgical techniques."},
+        {id: 920, w: "pioneer", p: "v", d: "做先鋒，當開拓者，倡導", s: "It was universities that pioneered these new industries."},
+        {id: 921, w: "pipeline", p: "n", d: "（常指鋪設在地下的）管道，管線", s: "There are plans to lay a gas pipeline through the region."},
+        {id: 922, w: "pirate", p: "n", d: "海盜", s: "There were reports that a pirate ship had come looking for treasure in the cove."},
+        {id: 923, w: "pit", p: "n", d: "坑；麻子，痘痕", s: "They'd dug a shallow pit and left the bodies in it."},
+        {id: 924, w: "plea", p: "n", d: "懇求，懇請", s: "He made a plea for help/mercy."},
+        {id: 925, w: "plead", p: "v", d: "乞求，懇求", s: "He was on his knees, pleading for mercy/forgiveness."},
+        {id: 926, w: "pledge", p: "v", d: "發誓；保證", s: "We are asking people to pledge their support for our campaign."},
+        {id: 927, w: "pledge", p: "n", d: "誓言；諾言；保證", s: "All the candidates have given/made pledges not to raise taxes if they are elected."},
+        {id: 928, w: "plug", p: "v", d: "（尤指透過廣播或電視）宣傳，推廣", s: "That interview was just a way for him to plug his new book."},
+        {id: 929, w: "plug", p: "n", d: "插頭", s: "The appliance came with a two-pin plug, so I needed an adapter for it."},
+        {id: 930, w: "plunge", p: "v", d: "（使）（某人或某物）驟然移動，驟然下降", s: "We ran down to the beach and plunged into the sea."},
+        {id: 931, w: "pole", p: "n", d: "杆，柱", s: "A tall metal pole in the town square proudly flies the national flag."},
+        {id: 932, w: "poll", p: "n", d: "民意測驗，民意調查", s: "We're carrying out/conducting a poll to find out what people think about abortion."},
+        {id: 933, w: "pond", p: "n", d: "池塘", s: "The children enjoyed feeding the ducks that were swimming in the park's pond."},
+        {id: 934, w: "pop", p: "v", d: "去", s: "I've just got to pop into the bank to get some money."},
+        {id: 935, w: "portfolio", p: "n", d: "公事包；資料夾", s: "I left my portfolio on the train."},
+        {id: 936, w: "portray", p: "v", d: "描繪，描述，描寫", s: "The painting portrays a beautiful young woman in a blue dress."},
+        {id: 937, w: "postpone", p: "v", d: "延後，延緩，使延期", s: "They decided to postpone their holiday until next year."},
+        {id: 938, w: "post-war", p: "adj", d: "戰後的", s: "The country experienced rapid economic growth during the prosperous post-war years."},
+        {id: 939, w: "practitioner", p: "n", d: "執業者；從業人員", s: "Elizabeth Quan is a London-based practitioner of traditional Chinese medicine."},
+        {id: 940, w: "preach", p: "v", d: "（尤指牧師在教堂中）講道，佈道", s: "Father Martin preached to the assembled mourners."},
+        {id: 941, w: "precedent", p: "n", d: "先例，前例", s: "There are several precedents for promoting people who don't have formal qualifications."},
+        {id: 942, w: "precision", p: "n", d: "準確（性），精確（性），精密（度）", s: "Great precision is required to align the mirrors accurately."},
+        {id: 943, w: "predator", p: "n", d: "捕食性動物，食肉動物", s: "The lion is a fierce predator that hunts large animals on the African savanna."},
+        {id: 944, w: "predecessor", p: "n", d: "前任，前輩；原有事物，前身", s: "My predecessor worked in this job for twelve years."},
+        {id: 945, w: "predominantly", p: "adv", d: "佔主導地位地；佔絕大多數地；顯著地", s: "The audience at the concert was predominantly made up of young teenagers."},
+        {id: 946, w: "pregnancy", p: "n", d: "懷孕", s: "Most women feel sick in the mornings during their first months of pregnancy."},
+        {id: 947, w: "prejudice", p: "n", d: "成見，偏見，歧視", s: "Laws against racial prejudice must be strictly enforced."},
+        {id: 948, w: "preliminary", p: "adj", d: "初步的，起始的；預備的", s: "Preliminary results show that the vaccine is effective, but this has to be confirmed by further medical trials."},
+        {id: 949, w: "premier", p: "adj", d: "首位的，首要的", s: "He's one of the nation's premier scientists."},
+        {id: 950, w: "premise", p: "n", d: "（作為先決條件的）假定，前提", s: "They had started with the premise that all men are created equal."},
+        {id: 951, w: "premium", p: "n", d: "獎金，津貼；加價；附加費", s: "We're willing to pay a premium for the best location."},
+        {id: 952, w: "prescribe", p: "v", d: "（醫生）開（藥），為…開（藥），囑咐（療法）", s: "The drug is often prescribed for ulcers."},
+        {id: 953, w: "prescription", p: "n", d: "處方，藥方；處方上開的藥", s: "I need to go to the pharmacy to pick up my doctor's prescription."},
+        {id: 954, w: "presently", p: "adv", d: "現在，目前", s: "Of 200 boats, only 20 are presently operational."},
+        {id: 955, w: "preservation", p: "n", d: "保護，維護；保藏，保養", s: "The society is dedicated to the preservation of the city's historic buildings."},
+        {id: 956, w: "preside", p: "v", d: "主持（會議或儀式）", s: "Who would be the best person to preside at/over the public enquiry?"},
+        {id: 957, w: "presidency", p: "n", d: "總統職務（或任期）", s: "He has announced that he is running for the presidency."},
+        {id: 958, w: "presidential", p: "adj", d: "與總統相稱的，符合總統形象的", s: "To many people the candidate just did not look very presidential."},
+        {id: 959, w: "prestigious", p: "adj", d: "有威望的，有聲望的，受尊敬的", s: "She was very proud to win the prestigious award for her scientific research."},
+        {id: 960, w: "presumably", p: "adv", d: "據推測，大概，可能", s: "They can presumably afford to buy a bigger apartment."},
+        {id: 961, w: "presume", p: "v", d: "假定，推定，認定", s: "I presume that they're not coming, since they haven't replied to the invitation."},
+        {id: 962, w: "prevail", p: "v", d: "佔優勢，占上風", s: "I am sure that common sense will prevail in the end."},
+        {id: 963, w: "prevalence", p: "n", d: "普遍性；流行率", s: "The prevalence of the disease is much higher in urban areas than rural ones."},
+        {id: 964, w: "prevention", p: "n", d: "阻止，妨礙；預防", s: "The new community program focuses on crime prevention among young people."},
+        {id: 965, w: "prey", p: "n", d: "被捕食的動物，獵物", s: "A hawk hovered in the air before swooping on its prey."},
+        {id: 966, w: "principal", p: "n", d: "（中小學或學院的）校長", s: "The school principal gave a speech to all the students in the main hall."},
+        {id: 967, w: "privatization", p: "n", d: "私有化", s: "The last few years have seen the privatization of many industries previously owned by the state."},
+        {id: 968, w: "privilege", p: "n", d: "（特定個體或群體的）特權，特別待遇", s: "Healthcare should be a right, not a privilege."},
+        {id: 969, w: "probe", p: "n", d: "探索；探查；查究；調查", s: "The police have launched a probe into the company's suspicious financial activities."},
+        {id: 970, w: "probe", p: "v", d: "盤問；追問；探究", s: "The interviewer probed deep into her private life."},
+        {id: 971, w: "problematic", p: "adj", d: "成問題的；疑難的", s: "Getting everyone there on time might prove problematic."},
+        {id: 972, w: "proceedings", p: "n", d: "一系列事件；一系列活動", s: "Millions of people watched the proceedings on television."},
+        {id: 973, w: "proceeds", p: "n", d: "（從事某種活動或變賣財物的）收入，收益", s: "The proceeds of today's festival will go to several local charities."},
+        {id: 974, w: "processing", p: "n", d: "（電腦的）信息處理", s: "The new computer is much faster at data processing than the old model."},
+        {id: 975, w: "processor", p: "n", d: "（電腦的）處理器", s: "The company is Ireland's largest dairy processor."},
+        {id: 976, w: "proclaim", p: "v", d: "宣佈；聲明", s: "All the countries have proclaimed their loyalty to the alliance."},
+        {id: 977, w: "productive", p: "adj", d: "多產的，富饒的", s: "In order to turn the deserts into fertile and productive land, engineers built an 800-mile canal."},
+        {id: 978, w: "productivity", p: "n", d: "生產率", s: "Studies show that if a working environment is pleasant, productivity increases."},
+        {id: 979, w: "profitable", p: "adj", d: "有盈利的；有益的", s: "Over the years it has developed into a highly profitable business."},
+        {id: 980, w: "profound", p: "adj", d: "強烈的；深沉的；極度的", s: "His mother's death when he was aged six had a very profound effect on him."},
+        {id: 981, w: "projection", p: "n", d: "預測，推測", s: "The company has failed to achieve last year's sales projections by 30 percent."},
+        {id: 982, w: "prominent", p: "adj", d: "著名的；重要的", s: "He is a prominent writer and a respected member of the literary community."},
+        {id: 983, w: "pronounced", p: "adj", d: "明顯的；明確的", s: "I'm told I have a very pronounced English accent when I speak French."},
+        {id: 984, w: "propaganda", p: "n", d: "宣傳；鼓吹", s: "The government used propaganda to persuade the public to support its new policies."},
+        {id: 985, w: "proposition", p: "n", d: "（通常指商業上的）提議，建議", s: "He wrote to me last week regarding a business proposition he thought might interest me."},
+        {id: 986, w: "prosecute", p: "v", d: "起訴；檢舉", s: "Shoplifters will be prosecuted."},
+        {id: 987, w: "prosecution", p: "n", d: "（被）起訴；（被）檢舉；訴訟", s: "A number of the cases have resulted in successful prosecution."},
+        {id: 988, w: "prosecutor", p: "n", d: "檢察官；公訴人", s: "The tape recordings provided prosecutors with the evidence they needed to prove he'd been involved in the conspiracy."},
+        {id: 989, w: "prospective", p: "adj", d: "潛在的客戶／可能成為僱主的人／即將為人父母者等", s: "We've had three sets of prospective buyers looking at the house."},
+        {id: 990, w: "prosperity", p: "n", d: "成功；（尤指經濟上的）繁榮，昌盛", s: "A country's future prosperity depends, to an extent, upon the quality of education of its people."},
+        {id: 991, w: "protective", p: "adj", d: "保護性的，防護的", s: "Workers in the factory must wear protective clothing at all times for safety."},
+        {id: 992, w: "protocol", p: "n", d: "禮儀，禮節", s: "It is a breach of protocol to speak to the Queen without being spoken to first."},
+        {id: 993, w: "province", p: "n", d: "省", s: "She grew up in the Canadian province of Alberta before moving to Toronto."},
+        {id: 994, w: "provincial", p: "adj", d: "省的", s: "The national and provincial governments are working together on the new transportation project."},
+        {id: 995, w: "provision", p: "n", d: "提供；供給；準備", s: "The provision of good public transport will be essential for developing the area."},
+        {id: 996, w: "provoke", p: "v", d: "激起，引起（尤指負面反應）", s: "The prospect of increased prices has already provoked an outcry."},
+        {id: 997, w: "psychiatric", p: "adj", d: "精神病（學）的", s: "He was admitted to the hospital for psychiatric treatment after his breakdown."},
+        {id: 998, w: "pulse", p: "n", d: "脈搏", s: "The child's pulse was strong/weak."},
+        {id: 999, w: "pump", p: "v", d: "（用泵）抽吸，抽送（液體或氣體）", s: "Our latest machine can pump a hundred gallons a minute."},
+        {id: 1000, w: "pump", p: "n", d: "唧筒，幫浦，抽水機；油泵；打氣筒", s: "I used a bicycle pump to inflate the tires on my bike."},
+        {id: 1001, w: "punch", p: "n", d: "一拳，一擊", s: "She gave him a punch on the nose."},
+        {id: 1002, w: "punch", p: "v", d: "用拳猛擊", s: "He punched him in the stomach."},
+        {id: 1003, w: "query", p: "n", d: "疑問，問題", s: "If you have any queries about your treatment, the doctor will answer them."},
+        {id: 1004, w: "quest", p: "n", d: "探索；尋求；追求", s: "Nothing will stop them in their quest for truth."},
+        {id: 1005, w: "quota", p: "n", d: "定額，限額，配額", s: "The country now has a quota on immigration."},
+        {id: 1006, w: "radar", p: "n", d: "雷達", s: "Other vessels in the area show up on the ship's radar (screen)."},
+        {id: 1007, w: "radical", p: "adj", d: "激進的；過激的；極端的", s: "He was known as a radical reformer/thinker/politician."},
+        {id: 1008, w: "rage", p: "n", d: "（一陣）盛怒；（一陣）狂怒；（一陣）暴怒", s: "Her sudden towering rages were terrifying."},
+        {id: 1009, w: "raid", p: "n", d: "（通常由一小隊人發起的）突襲，襲擊", s: "The commandos made/staged/carried out a daring raid (on the enemy)."},
+        {id: 1010, w: "raid", p: "v", d: "突襲，突擊", s: "The nomads raided the enemy camp and captured over 100 camels."},
+        {id: 1011, w: "rally", p: "n", d: "（尤指為表明支援某種主張的）集會，群衆大會", s: "5,000 people held an anti-nuclear rally."},
+        {id: 1012, w: "rally", p: "v", d: "集合；召集；（使）團結", s: "Supporters/Opponents of the new shopping development are trying to rally local people in favour of/against it."},
+        {id: 1013, w: "ranking", p: "n", d: "排名；名次；地位", s: "Last year Wiseman rose from 266 to 35 in the tennis world rankings."},
+        {id: 1014, w: "rape", p: "n", d: "強姦（罪）", s: "He had committed several rapes."},
+        {id: 1015, w: "rape", p: "v", d: "強姦；強暴", s: "She was pulled from the car and raped."},
+        {id: 1016, w: "ratio", p: "n", d: "比；比例；比率", s: "The ratio of men to women at the conference was ten to one/10:1."},
+        {id: 1017, w: "rational", p: "adj", d: "頭腦清醒的；理智的", s: "There must be some rational explanation for what happened."},
+        {id: 1018, w: "ray", p: "n", d: "光線，光束；（熱能等的）輻射線", s: "A ray of sunshine shone through a gap in the clouds."},
+        {id: 1019, w: "readily", p: "adv", d: "迅速地；心甘情願地；輕而易舉地", s: "He readily agreed to help."},
+        {id: 1020, w: "realization", p: "n", d: "明白；認識到；意識到", s: "The realization was dawning that this was a major disaster."},
+        {id: 1021, w: "realm", p: "n", d: "（興趣或活動的）界，領域，範圍", s: "Her interests are in the realm of practical politics."},
+        {id: 1022, w: "rear", p: "adj", d: "後部的；後面的；背部的", s: "There's a sticker on the rear door/window."},
+        {id: 1023, w: "rear", p: "n", d: "後面；後部；背部", s: "We walked round to the rear of the house."},
+        {id: 1024, w: "reassure", p: "v", d: "使安心；使打消疑慮；安慰", s: "I was nervous on my first day at college, but I was reassured to see some friendly faces."},
+        {id: 1025, w: "reasoning", p: "n", d: "推理；推斷；推論", s: "The reasoning behind her conclusion is impossible to fault."},
+        {id: 1026, w: "rebel", p: "n", d: "（試圖武裝推翻國家政治制度的）反抗者，造反者", s: "The rebels took over the capital and set up a new government."},
+        {id: 1027, w: "rebellion", p: "n", d: "反叛，造反；叛亂", s: "The government has brutally crushed the rebellion."},
+        {id: 1028, w: "recipient", p: "n", d: "接受者；領受者；承受者", s: "Former Nobel Peace Prize recipients include Jimmy Carter and Barack Obama."},
+        {id: 1029, w: "reconstruction", p: "n", d: "（對被毀的事物進行的）重建，改造，復原", s: "Post-war economic reconstruction in the country must begin with the resumption of agricultural production."},
+        {id: 1030, w: "recount", p: "v", d: "講述；敍述；描述", s: "He recounted his adventures since he had left home."},
+        {id: 1031, w: "referendum", p: "n", d: "（就重大政治或社會問題進行的）全民公決，全民公投", s: "Is it more democratic to hold a referendum, rather than let the government alone decide?"},
+        {id: 1032, w: "reflection", p: "n", d: "映射；映照出的影像；反射", s: "In Greek mythology, Narcissus fell in love with his own reflection in a pool of water."},
+        {id: 1033, w: "reform", p: "n", d: "（尤指人的行為或事物構造方面的）改革，改進，改造，改良", s: "Some reforms of/to the system will be necessary."},
+        {id: 1034, w: "reform", p: "v", d: "（尤指透過改變人的行為或事物的構造而）改革，改進，改造", s: "Who will reform our unfair electoral system?"},
+        {id: 1035, w: "refuge", p: "n", d: "避難（所）；庇護（所）；慰藉", s: "These people are seeking/taking refuge from persecution."},
+        {id: 1036, w: "refusal", p: "n", d: "拒絕；回絕", s: "Our request for permission to travel met with/received a flat/point-blank (= complete) refusal from the authorities."},
+        {id: 1037, w: "regain", p: "v", d: "重新獲得；恢復；收回", s: "The government has regained control of the capital from rebel forces."},
+        {id: 1038, w: "regardless", p: "adv", d: "不管怎樣，無論如何；不管，不顧", s: "The plan for a new office building went ahead regardless of local opposition."},
+        {id: 1039, w: "regime", p: "n", d: "政府；政權；政體", s: "The old corrupt, totalitarian regime was overthrown."},
+        {id: 1040, w: "regulator", p: "n", d: "調節器；校準器；調整器", s: "Ofgas is the official government regulator for the gas industry in Great Britain."},
+        {id: 1041, w: "regulatory", p: "adj", d: "管理的；控制的；監管的", s: "All new drugs must pass a series of tests by the regulatory body."},
+        {id: 1042, w: "rehabilitation", p: "n", d: "恢復（正常生活）；康復；（囚犯）獲得改造", s: "Many amputees in the early stages of their rehabilitation feel despair."},
+        {id: 1043, w: "reign", p: "n", d: "為王，為君；當政；統治", s: "The country prospered economically during the long reign of the queen."},
+        {id: 1044, w: "reign", p: "v", d: "為王，為君；當政；統治", s: "Queen Victoria reigned over Britain from 1837 to 1901."},
+        {id: 1045, w: "rejection", p: "n", d: "拒絕；拒收；擯棄；拒絕相信", s: "The government's rejection of the plans is a setback for us."},
+        {id: 1046, w: "relevance", p: "n", d: "相關性；實用性；意義", s: "What relevance does that point have to the discussion?"},
+        {id: 1047, w: "reliability", p: "n", d: "可靠性", s: "The incident cast doubt on her motives and reliability."},
+        {id: 1048, w: "reluctant", p: "adj", d: "勉強的；不情願的", s: "I was having such a good time I was reluctant to leave."},
+        {id: 1049, w: "remainder", p: "n", d: "剩餘部分；其餘；剩餘物", s: "I ate most of it and gave the remainder to the dog."},
+        {id: 1050, w: "remains", p: "n", d: "剩餘物；殘留物；遺跡，遺址", s: "The remains of lunch were still on the table."},
+        {id: 1051, w: "remedy", p: "n", d: "療法，治療；補救（辦法），糾正（辦法）", s: "She used an effective herbal remedy for headaches that her grandmother taught her."},
+        {id: 1052, w: "reminder", p: "n", d: "（告知該做某事的）通知單，提示信，提醒（的話），提示", s: "If he forgot to pay his rent, his landlady would send him a reminder."},
+        {id: 1053, w: "removal", p: "n", d: "移開；拿開；去掉；除去；調動", s: "The company specializes in the safe removal of hazardous asbestos from old buildings."},
+        {id: 1054, w: "render", p: "v", d: "使成為；使變得；使處於某種狀態", s: "His rudeness rendered me speechless."},
+        {id: 1055, w: "renew", p: "v", d: "給…展期，延長…的期限；更新，更換", s: "Every year I renew my membership of the sports club."},
+        {id: 1056, w: "renowned", p: "adj", d: "著名的", s: "The region is renowned for its outstanding natural beauty."},
+        {id: 1057, w: "rental", p: "n", d: "出租，租賃，租借；租金，租費", s: "Property rental is quite expensive here."},
+        {id: 1058, w: "replacement", p: "n", d: "更換，替換", s: "The replacement of the old windows will improve the building's energy efficiency."},
+        {id: 1059, w: "reportedly", p: "adv", d: "據傳聞，據稱", s: "New York is reportedly a very exciting place to live."},
+        {id: 1060, w: "representation", p: "n", d: "作為…的代表（或代理人）；作為…的代言人", s: "Can he afford legal representation?"},
+        {id: 1061, w: "reproduce", p: "v", d: "複製；翻印；複寫", s: "His work was reproduced on leaflets and magazines."},
+        {id: 1062, w: "reproduction", p: "n", d: "生殖；生育；繁殖", s: "The biology class studied the complex process of human reproduction this week."},
+        {id: 1063, w: "republic", p: "n", d: "（通常指由選舉産生的人民代表和總統治理的）共和國，共和政體", s: "France is a republic with a president as its head of state."},
+        {id: 1064, w: "resemble", p: "v", d: "像；看起來像；與…相似", s: "You resemble your mother very closely."},
+        {id: 1065, w: "reside", p: "v", d: "居住；定居", s: "The family now resides in southern France."},
+        {id: 1066, w: "residence", p: "n", d: "住所；住房；宅第", s: "The Prime Minister's official residence is located at 10 Downing Street."},
+        {id: 1067, w: "residential", p: "adj", d: "居民區的", s: "The house is located in a quiet residential area outside the city center."},
+        {id: 1068, w: "residue", p: "n", d: "剩餘部分；剩餘物；殘留物；殘渣", s: "She cut off the best meat and threw away the residue."},
+        {id: 1069, w: "resignation", p: "n", d: "辭職；辭去（職務）；放棄（工作）", s: "There have been calls for his resignation."},
+        {id: 1070, w: "resistance", p: "n", d: "抵抗；反抗；反對", s: "The new strain of bacteria shows a strong resistance to common antibiotics."},
+        {id: 1071, w: "respective", p: "adj", d: "各自的；各個的；分別的", s: "Everyone would go into the hall for assembly and then afterwards we'd go to our respective classes."},
+        {id: 1072, w: "respectively", p: "adv", d: "各自地；各個地；分別地", s: "Julie and Mark, aged 17 and 19 respectively."},
+        {id: 1073, w: "restoration", p: "n", d: "修復；恢復；重定", s: "The first task following the disaster was the restoration of clean water supplies."},
+        {id: 1074, w: "restraint", p: "n", d: "克制；平心靜氣；冷靜", s: "He showed admirable restraint, and refused to be provoked."},
+        {id: 1075, w: "resume", p: "v", d: "（中斷後）繼續，重新開始", s: "Normal services will be resumed in the spring."},
+        {id: 1076, w: "retreat", p: "n", d: "（士兵或軍隊的）撤退，退卻，後退", s: "The army's strategic retreat from the city saved many soldiers' lives."},
+        {id: 1077, w: "retreat", p: "v", d: "退卻；撤退；後退", s: "Attacks by enemy aircraft forced the tanks to retreat (from the city)."},
+        {id: 1078, w: "retrieve", p: "v", d: "找回；取回；挽回", s: "We taught our dog to retrieve a ball."},
+        {id: 1079, w: "revelation", p: "n", d: "暴露；被揭示的真相，被揭露的內情", s: "The final chapter of the book contained a shocking revelation about the killer."},
+        {id: 1080, w: "revenge", p: "n", d: "報復；報仇", s: "She took/got/exacted (her) revenge on him for leaving her by smashing up his car."},
+        {id: 1081, w: "reverse", p: "v", d: "（使）反向；（使）倒轉；徹底改變；推翻", s: "The new manager hoped to reverse the decline in the company's fortunes."},
+        {id: 1082, w: "reverse", p: "n", d: "相反的情況（或事物）；對立面", s: "You might think that people who don't worry about their diet are fatter and more unhealthy; in fact, the reverse is true."},
+        {id: 1083, w: "reverse", p: "adj", d: "相反的", s: "Please list the items in reverse chronological order, starting with the most recent."},
+        {id: 1084, w: "revival", p: "n", d: "復甦；復興；重新流行", s: "Recently, there has been some revival of (interest in) ancient music."},
+        {id: 1085, w: "revive", p: "v", d: "（使）甦醒；（使）復原；（使）復興；（使）重新流行", s: "The government is trying to revive the failing economy with new policies."},
+        {id: 1086, w: "revolutionary", p: "adj", d: "革命的，革命性的", s: "The internet was a revolutionary technology that changed how people communicate."},
+        {id: 1087, w: "rhetoric", p: "n", d: "雄辯言辭；煽動性語言", s: "How far the president will be able to translate his campaign rhetoric into action remains to be seen."},
+        {id: 1088, w: "rifle", p: "n", d: "來福槍；步槍", s: "The soldier was issued a standard service rifle as part of his equipment."},
+        {id: 1089, w: "riot", p: "n", d: "暴亂；騷亂；聚衆鬧事", s: "Food protests and riots have erupted in more than 30 countries."},
+        {id: 1090, w: "rip", p: "v", d: "撕裂；撕破；劃破", s: "His new trousers ripped when he bent down."},
+        {id: 1091, w: "ritual", p: "n", d: "例行公事，老規矩；（尤指）儀式", s: "Coffee and the newspaper are part of my morning ritual."},
+        {id: 1092, w: "robust", p: "adj", d: "（人或動物）強壯的，茁壯的；（東西或系統）堅固的，耐用的，結實的", s: "He looks robust and healthy enough."},
+        {id: 1093, w: "rock", p: "v", d: "（使）搖晃，（使）搖動", s: "He picked up the baby and gently rocked her to sleep."},
+        {id: 1094, w: "rod", p: "n", d: "竿，杆，棒", s: "He was given a fishing rod for his birthday."},
+        {id: 1095, w: "rotate", p: "v", d: "（尤指圍繞一個固定點）（使）旋轉，（使）轉動", s: "Rotate the handle by 180° to open the door."},
+        {id: 1096, w: "rotation", p: "n", d: "（尤指圍繞一個固定點）旋轉，轉動", s: "The Earth completes one full rotation on its axis every twenty-four hours."},
+        {id: 1097, w: "ruling", p: "n", d: "裁決；裁定；判定；決定", s: "The court has made a final ruling on the case that the companies acted illegally."},
+        {id: 1098, w: "rumour", p: "n", d: "流言；謠傳；傳聞", s: "Rumours are going round (the school) about Mr Mason and his assistant."},
+        {id: 1099, w: "sack", p: "v", d: "解僱，開除", s: "They sacked her for being late."},
+        {id: 1100, w: "sacred", p: "adj", d: "（尤指因與神有關而）神聖的，值得崇敬的", s: "The ancient temple is considered a sacred place by the local people."},
+        {id: 1101, w: "sacrifice", p: "n", d: "犧牲；獻出", s: "We had to make sacrifices in order to pay for our children's education."},
+        {id: 1102, w: "sacrifice", p: "v", d: "犧牲；獻出", s: "Many women sacrifice interesting careers for their families."},
+        {id: 1103, w: "saint", p: "n", d: "（基督教教會，尤指天主教教會正式追封的）聖徒，聖者；聖徒頭銜（聖徒的名字有時用作地名或建築物的名稱）", s: "Saint Peter was one of the twelve apostles of Jesus and a leader of the early Christian church."},
+        {id: 1104, w: "sake", p: "n", d: "爲了（某人）的利益；爲了幫助（某人）", s: "Please do it, for David's sake."},
+        {id: 1105, w: "sanction", p: "n", d: "制裁", s: "Many nations have imposed sanctions on the country because of its attacks on its own people."},
+        {id: 1106, w: "say", p: "n", d: "意見；決定權；發言權", s: "Keep quiet for a minute and let me have my say."},
+        {id: 1107, w: "scattered", p: "adj", d: "分散的；散佈的；疏疏落落的", s: "Toys and books were scattered about/around the room."},
+        {id: 1108, w: "sceptical", p: "adj", d: "懷疑的，持懷疑態度的", s: "Many experts remain sceptical about/of his claims."},
+        {id: 1109, w: "scope", p: "n", d: "範圍", s: "I'm afraid that problem is beyond/outside the scope of my lecture."},
+        {id: 1110, w: "screw", p: "v", d: "用螺絲固定（或旋緊）", s: "Screw this piece of wood to the wall."},
+        {id: 1111, w: "screw", p: "n", d: "螺絲（釘）", s: "One of the screws is loose."},
+        {id: 1112, w: "scrutiny", p: "n", d: "細看，仔細審查", s: "The government's record will be subjected to/come under (close) scrutiny in the weeks before the election."},
+        {id: 1113, w: "seal", p: "v", d: "封，密封", s: "Make sure you've signed the cheque before sealing the envelope."},
+        {id: 1114, w: "seal", p: "n", d: "海豹", s: "We watched the cute seal pup swim playfully in the cold arctic water."},
+        {id: 1115, w: "secular", p: "adj", d: "世俗的；非宗教的", s: "We live in an increasingly secular society, in which religion has less and less influence on our daily lives."},
+        {id: 1116, w: "seemingly", p: "adv", d: "貌似；看似；（尤指）表面上地", s: "He remains confident and seemingly untroubled by his recent problems."},
+        {id: 1117, w: "segment", p: "n", d: "（群體或事物的）部分", s: "People over the age of 85 make up the fastest-growing segment of the population."},
+        {id: 1118, w: "seize", p: "v", d: "抓住；奪過", s: "I seized his arm and made him turn to look at me."},
+        {id: 1119, w: "seldom", p: "adv", d: "很少；幾乎從來沒有", s: "Now that we have a baby, we seldom get the chance to go to the cinema."},
+        {id: 1120, w: "selective", p: "adj", d: "有選擇性的；嚴格篩選的", s: "As a teacher she was very selective, accepting only a small number of exceptionally gifted pupils."},
+        {id: 1121, w: "senator", p: "n", d: "參議員", s: "Only two senators voted against the bill."},
+        {id: 1122, w: "sensation", p: "n", d: "感覺；知覺；（尤指）觸覺", s: "After touching the hot stove, he felt a painful burning sensation in his hand."},
+        {id: 1123, w: "sensitivity", p: "n", d: "善解人意；體貼；體諒", s: "The police showed commendable sensitivity in their handling of the case."},
+        {id: 1124, w: "sentiment", p: "n", d: "觀點；意見；看法；情緒", s: "Nationalist sentiment has increased in the area since the bombing."},
+        {id: 1125, w: "separation", p: "n", d: "分離；分開", s: "During the war many couples had to endure long periods of separation (= not being together)."},
+        {id: 1126, w: "serial", p: "adj", d: "（重罪案犯或重案）連環的，連續的", s: "She wrote a thriller about a brutal serial killer/murderer."},
+        {id: 1127, w: "settlement", p: "n", d: "（結束爭端的）協定", s: "It now seems unlikely that it will be possible to negotiate/reach a peaceful settlement of the conflict."},
+        {id: 1128, w: "set-up", p: "n", d: "組織結構；事物安排；體制", s: "When I started my new job, it took me a while to get used to the set-up."},
+        {id: 1129, w: "sexuality", p: "n", d: "性能力；性欲", s: "She was uncomfortably aware of her son's developing sexuality."},
+        {id: 1130, w: "shareholder", p: "n", d: "股票持有人，股東", s: "Shareholders will be voting on the proposed merger of the companies next week."},
+        {id: 1131, w: "shatter", p: "v", d: "（使）破碎；粉碎", s: "The glass shattered into a thousand tiny pieces."},
+        {id: 1132, w: "shed", p: "v", d: "（常爲報刊用語）去除，擺脫", s: "900 jobs will be shed over the next few months."},
+        {id: 1133, w: "sheer", p: "adj", d: "完全的，徹底的", s: "The suggestion is sheer nonsense."},
+        {id: 1134, w: "shipping", p: "n", d: "船舶", s: "This stretch of water is heavily used by shipping."},
+        {id: 1135, w: "shoot", p: "n", d: "芽；苗；新枝", s: "Two weeks after we'd planted the seeds, little green shoots started to appear."},
+        {id: 1136, w: "shrink", p: "v", d: "（使）縮小，（使）變小", s: "Your sweater will shrink if you wash it at too high a temperature."},
+        {id: 1137, w: "shrug", p: "v", d: "（表示不知道或不感興趣）聳（肩）", s: "Where's Dad? \"How should I know?\" replied my brother, shrugging."},
+        {id: 1138, w: "sigh", p: "v", d: "歎息，歎氣", s: "She sighed deeply and sat down."},
+        {id: 1139, w: "sigh", p: "n", d: "歎息，歎氣", s: "He leaned back in his seat with a sigh."},
+        {id: 1140, w: "simulate", p: "v", d: "類比，模仿；假裝，僞裝", s: "In cheap furniture, plastic is often used to simulate wood."},
+        {id: 1141, w: "simulation", p: "n", d: "類比，模仿；假裝，僞裝", s: "The manager prepared a computer simulation of likely sales performance for the rest of the year."},
+        {id: 1142, w: "simultaneously", p: "adv", d: "同時地", s: "The game will be broadcast simultaneously on TV and radio."},
+        {id: 1143, w: "sin", p: "n", d: "（違反宗教戒律或道德規範的）罪，罪過", s: "In many religions, it is considered a sin to lie or steal from others."},
+        {id: 1144, w: "situated", p: "adj", d: "位於…的", s: "The school is situated near the park."},
+        {id: 1145, w: "sketch", p: "n", d: "草圖，速寫；素描", s: "My mother made a (pencil) sketch of my brother reading a book."},
+        {id: 1146, w: "skip", p: "v", d: "跳，跳躍", s: "She watched her little granddaughter skip down the path."},
+        {id: 1147, w: "slam", p: "v", d: "（使）重重撞上，（使）砰地關上", s: "The wind made the door/window slam (shut)."},
+        {id: 1148, w: "slap", p: "v", d: "拍，打；掌摑", s: "She slapped his face."},
+        {id: 1149, w: "slash", p: "v", d: "（用利器）劈，砍，劃", s: "The museum was broken into last night and several paintings were slashed."},
+        {id: 1150, w: "slavery", p: "n", d: "奴隸制，蓄奴；奴隸身份", s: "Slavery still exists in many parts of the world."},
+        {id: 1151, w: "slot", p: "n", d: "狹縫；（尤指）投幣口，狹槽", s: "I put my money in the slot and pressed the button but nothing came out."},
+        {id: 1152, w: "smash", p: "v", d: "打碎，摔碎", s: "Rioters ran through the city, smashing windows and looting shops."},
+        {id: 1153, w: "snap", p: "v", d: "突然折斷，哢嚓一聲折斷", s: "You'll snap that ruler if you bend it too far."},
+        {id: 1154, w: "soak", p: "v", d: "浸濕，把…濕透；（液體）滲入，滲透", s: "The wind had blown the rain in and soaked the carpet."},
+        {id: 1155, w: "soar", p: "v", d: "猛增，驟升", s: "All night long fireworks soared into the sky."},
+        {id: 1156, w: "socialist", p: "adj", d: "支持社會主義的；與社會主義有關的", s: "The new government implemented several socialist policies aimed at reducing inequality."},
+        {id: 1157, w: "sole", p: "adj", d: "唯一的，單一的", s: "My sole objective is to make the information more widely available."},
+        {id: 1158, w: "solely", p: "adv", d: "唯一地，單獨地，僅有地", s: "I bought it solely for that purpose."},
+        {id: 1159, w: "solicitor", p: "n", d: "（英國和澳大利亞的）初級律師，事務律師，訴狀律師", s: "She hired a solicitor to help her with the legal paperwork for buying her house."},
+        {id: 1160, w: "solidarity", p: "n", d: "團結一致", s: "The situation raises important questions about solidarity among member states of the UN."},
+        {id: 1161, w: "solo", p: "adj", d: "獨自的（地），單獨的（地），單人的（地）", s: "The pilot was nervous before her first solo flight across the Atlantic Ocean."},
+        {id: 1162, w: "solo", p: "n", d: "獨奏；獨唱", s: "The concert featured a brilliant trumpet solo by a world-renowned musician."},
+        {id: 1163, w: "sound", p: "adj", d: "無損傷的；完好的；健康的，健全的", s: "It's an old building but it's still structurally sound."},
+        {id: 1164, w: "sovereignty", p: "n", d: "主權，統治權", s: "Talks are being held about who should have sovereignty over the island."},
+        {id: 1165, w: "spam", p: "n", d: "斯帕姆午餐肉", s: "During the war, people often ate fried spam fritters due to food shortages."},
+        {id: 1166, w: "span", p: "v", d: "（時間）持續，跨越", s: "Tennis has a history spanning several centuries."},
+        {id: 1167, w: "span", p: "n", d: "一段時間", s: "He has a short attention/concentration span."},
+        {id: 1168, w: "spare", p: "v", d: "饒恕；不傷害；不毀壞", s: "They asked him to spare the women and children."},
+        {id: 1169, w: "spark", p: "v", d: "引起，導致，觸發（尤指爭論或打鬥）", s: "This proposal will almost certainly spark another countrywide debate about immigration."},
+        {id: 1170, w: "specialized", p: "adj", d: "專門的；專科的", s: "Her job is very specialized (= involves only one limited area)."},
+        {id: 1171, w: "specification", p: "n", d: "規格；規範；標準；明細單；詳細說明", s: "All products are made exactly to the customer's specifications."},
+        {id: 1172, w: "specimen", p: "n", d: "樣品；標本；樣本", s: "He has a collection of rare insect specimens."},
+        {id: 1173, w: "spectacle", p: "n", d: "不尋常的事；出人意料的情況", s: "It was a strange spectacle to see the two former enemies shaking hands and slapping each other on the back."},
+        {id: 1174, w: "spectrum", p: "n", d: "光譜；波譜；聲譜；頻譜", s: "The colours of the spectrum - red, orange, yellow, green, blue, indigo, and violet - can be seen in a rainbow."},
+        {id: 1175, w: "spell", p: "n", d: "（持續的）一段時間", s: "I lived in Cairo for a spell."},
+        {id: 1176, w: "sphere", p: "n", d: "球，圓球；球狀物", s: "Doctors have replaced the top of his hip bone with a metal sphere."},
+        {id: 1177, w: "spin", p: "v", d: "（使）（尤指快速）旋轉", s: "The earth spins on its axis."},
+        {id: 1178, w: "spin", p: "n", d: "旋轉；轉動", s: "I hit something on the road, which sent the car into a spin."},
+        {id: 1179, w: "spine", p: "n", d: "脊柱；脊椎", s: "She injured her spine in a riding accident."},
+        {id: 1180, w: "spotlight", p: "n", d: "聚光燈；聚光燈照明圈", s: "The room was lit by spotlights."},
+        {id: 1181, w: "spouse", p: "n", d: "配偶", s: "In 60 percent of the households surveyed both spouses went out to work."},
+        {id: 1182, w: "spy", p: "n", d: "間諜，密探", s: "His former colleagues have denounced him as a spy."},
+        {id: 1183, w: "spy", p: "v", d: "搜集情報；從事間諜活動", s: "He was arrested for spying on missile sites."},
+        {id: 1184, w: "squad", p: "n", d: "小隊；特別行動組", s: "An army bomb squad arrived and defused the bomb."},
+        {id: 1185, w: "squeeze", p: "v", d: "（尤指從各方面）擠壓，捏，擠，榨", s: "Cut the lemon in half and squeeze the juice into the bowl."},
+        {id: 1186, w: "stab", p: "v", d: "（用刀等銳器）戳，捅，刺", s: "She was stabbed several times in the chest."},
+        {id: 1187, w: "stability", p: "n", d: "穩定；穩固", s: "The country enjoyed a long period of political stability after the civil war."},
+        {id: 1188, w: "stabilize", p: "v", d: "穩定下來", s: "He suffered a second heart attack two days ago but his condition has now stabilized."},
+        {id: 1189, w: "stake", p: "n", d: "股本，股份", s: "He holds (= owns) a 40 percent stake in/of the company."},
+        {id: 1190, w: "standing", p: "adj", d: "永久的，長期的；常設的", s: "The organization formed a standing committee to oversee its financial affairs."},
+        {id: 1191, w: "stark", p: "adj", d: "赤裸的；簡單的；明顯的；（尤指）毫無修飾的，粗陋的；嚴重的；極端的", s: "It was a stark room with a bed and chair as the only furniture."},
+        {id: 1192, w: "statistical", p: "adj", d: "統計的；統計學的", s: "The report provided strong statistical evidence to support its main conclusions."},
+        {id: 1193, w: "steer", p: "v", d: "駕駛（交通工具）；掌方向盤", s: "She carefully steered the car around the potholes."},
+        {id: 1194, w: "stem", p: "n", d: "主幹", s: "The plant had long, trailing stems of ivy that hung down from the basket."},
+        {id: 1195, w: "stem", p: "v", d: "阻擋；阻止；遏制", s: "These measures are designed to stem the rise of violent crime."},
+        {id: 1196, w: "stereotype", p: "n", d: "（尤指錯誤的）刻板印象，老套俗見，成見", s: "It is important to challenge harmful racial stereotypes whenever we encounter them."},
+        {id: 1197, w: "stimulus", p: "n", d: "刺激（物），激勵（物）；促進因素", s: "Foreign investment has been a stimulus to the industry."},
+        {id: 1198, w: "stir", p: "v", d: "（用湯匙等）攪動，攪拌", s: "Stir the sauce gently until it begins to boil."},
+        {id: 1199, w: "storage", p: "n", d: "儲存；儲藏；儲備", s: "We've had to build some cupboards to give us more storage space."},
+        {id: 1200, w: "straightforward", p: "adj", d: "容易理解的，簡單的", s: "Just follow the signs to Bradford - it's very straightforward."},
+        {id: 1201, w: "strain", p: "n", d: "壓力；拉力，張力；作用力", s: "The hurricane put such a strain on the bridge that it collapsed."},
+        {id: 1202, w: "strand", p: "n", d: "（線、繩等的）縷，股", s: "She tucked a loose strand of hair behind her ears."},
+        {id: 1203, w: "strategic", p: "adj", d: "有助於計劃成功的；戰略（性）的", s: "The general made a strategic decision to withdraw his troops to a better position."},
+        {id: 1204, w: "striking", p: "adj", d: "異乎尋常的，驚人的；引人注目的", s: "She bears a striking resemblance to her mother."},
+        {id: 1205, w: "strip", p: "n", d: "條，帶，細長片", s: "They bought a narrow strip of land to build their new house on."},
+        {id: 1206, w: "strip", p: "v", d: "除去，剝除，撕掉（外皮或表層）", s: "Because of the pollution, the trees are almost completely stripped of bark."},
+        {id: 1207, w: "strive", p: "v", d: "（尤指長期或不畏艱難地）努力，奮鬥，力爭", s: "Mr Roe has kindled expectations that he must now strive to live up to."},
+        {id: 1208, w: "structural", p: "adj", d: "結構；構造；機構；體系", s: "The political reforms have led to major structural changes in the economy."},
+        {id: 1209, w: "stumble", p: "v", d: "絆腳；絆倒", s: "Running along the beach, she stumbled on a log and fell on the sand."},
+        {id: 1210, w: "stun", p: "v", d: "使震驚；使驚訝", s: "News of the disaster stunned people throughout the world."},
+        {id: 1211, w: "submission", p: "n", d: "提交；呈遞", s: "No date has yet been set for the submission of applications."},
+        {id: 1212, w: "subscriber", p: "n", d: "訂購者，訂閱人；用戶；定期捐款者", s: "Cable television companies have launched major campaigns to increase their number of subscribers."},
+        {id: 1213, w: "subscription", p: "n", d: "訂閱費，訂購款；服務費", s: "I decided to take out (= pay for) a subscription to a gardening magazine."},
+        {id: 1214, w: "subsidy", p: "n", d: "補助金；津貼，補貼", s: "The company received a substantial government subsidy."},
+        {id: 1215, w: "substantial", p: "adj", d: "大的；可觀的；價值巨大的；重大的", s: "The findings show a substantial difference between the opinions of men and women."},
+        {id: 1216, w: "substantially", p: "adv", d: "在很大程度上", s: "The new rules will substantially change how we do things."},
+        {id: 1217, w: "substitute", p: "n", d: "替代品，代替物", s: "Tofu can be used as a meat substitute in vegetarian recipes."},
+        {id: 1218, w: "substitute", p: "v", d: "用…代替，代之以", s: "You can substitute oil for butter in this recipe."},
+        {id: 1219, w: "substitution", p: "n", d: "換人", s: "It looks as though the coach is going to make a substitution (= change one player for another in the game)."},
+        {id: 1220, w: "subtle", p: "adj", d: "隱約的；暗淡的；不易察覺的，不明顯的；微妙的", s: "The room was painted a subtle shade of pink."},
+        {id: 1221, w: "suburban", p: "adj", d: "近郊住宅區的；城郊的", s: "They decided to move to a quiet suburban neighborhood to raise their children."},
+        {id: 1222, w: "succession", p: "n", d: "一連串；一系列；接連", s: "A succession of scandals and revelations has undermined the government over the past year."},
+        {id: 1223, w: "successive", p: "adj", d: "接連地，連續地", s: "It was the team's fourth successive defeat."},
+        {id: 1224, w: "successor", p: "n", d: "繼任者，接替者；繼承人；接替的事物", s: "The university is seeking a successor to its vice chancellor, who retires this spring."},
+        {id: 1225, w: "suck", p: "v", d: "吸；吮吸；咂，啜", s: "She was sitting on the grass sucking lemonade through a straw."},
+        {id: 1226, w: "sue", p: "v", d: "控告，對…提起訴訟（尤指要求賠償）", s: "He was so furious about the accusations in the letter that he threatened to sue."},
+        {id: 1227, w: "suicide", p: "n", d: "自殺；自殺者", s: "Public health campaigns aim to prevent suicide by offering mental health support."},
+        {id: 1228, w: "suite", p: "n", d: "（尤指飯店的）套房", s: "The singer was interviewed in his hotel suite."},
+        {id: 1229, w: "summit", p: "n", d: "高峰會，領袖會議，最高級會議", s: "The leaders of the G7 nations will attend the annual economic summit meeting."},
+        {id: 1230, w: "superb", p: "adj", d: "極好的，超級的，傑出的", s: "He is a superb dancer."},
+        {id: 1231, w: "superior", p: "adj", d: "好於平均的，好過其他的，優越的", s: "This is clearly the work of a superior artist."},
+        {id: 1232, w: "supervise", p: "v", d: "監督，管理，指導", s: "The UN is supervising the distribution of aid by local agencies in the disaster area."},
+        {id: 1233, w: "supervision", p: "n", d: "監督，管理，指導", s: "Students are not allowed to handle these chemicals unless they are under the supervision of a teacher."},
+        {id: 1234, w: "supervisor", p: "n", d: "監督者，管理者，指導者", s: "I have a meeting with my supervisor about my research topic."},
+        {id: 1235, w: "supplement", p: "n", d: "補充物，增補物", s: "The doctor said she should be taking vitamin supplements."},
+        {id: 1236, w: "supplement", p: "v", d: "增加，補充，增補", s: "He supplements (= adds to) his income by working in a bar at night."},
+        {id: 1237, w: "supportive", p: "adj", d: "支持的；鼓勵的；擁護的", s: "Her parents were very supportive of her decision to become an artist."},
+        {id: 1238, w: "supposedly", p: "adv", d: "想像上；大概；恐怕", s: "Well, the tickets are supposedly in the mail."},
+        {id: 1239, w: "suppress", p: "v", d: "（用武力）鎮壓，壓制，制止", s: "The Hungarian uprising in 1956 was suppressed by the Soviet Union."},
+        {id: 1240, w: "supreme", p: "adj", d: "（等級、水準或重要性）最高（的），至高無上（的）", s: "The supreme commander of the armed forces ordered the troops to advance."},
+        {id: 1241, w: "surge", p: "n", d: "陡增，遽增，急遽上升", s: "An unexpected surge in electrical power caused the computer to crash."},
+        {id: 1242, w: "surge", p: "v", d: "激增，陡增，劇烈上升", s: "The company's profits have surged."},
+        {id: 1243, w: "surgical", p: "adj", d: "（外科）手術用的", s: "The operation required precise surgical instruments to ensure its complete success."},
+        {id: 1244, w: "surplus", p: "n", d: "剩餘（的），多餘（的）；過剩（的）", s: "The world is now producing large food surpluses."},
+        {id: 1245, w: "surrender", p: "v", d: "投降", s: "They would rather die than surrender (to the invaders)."},
+        {id: 1246, w: "surveillance", p: "n", d: "（尤指員警或軍隊的）監視，盯梢", s: "The police have kept the nightclub under surveillance because of suspected illegal drug activity."},
+        {id: 1247, w: "suspension", p: "n", d: "暫停，中止", s: "The suspension of fighting is to take effect at 6 a.m. on Monday."},
+        {id: 1248, w: "suspicion", p: "n", d: "懷疑，猜想", s: "I have a suspicion that he only asked me out because my brother persuaded him to."},
+        {id: 1249, w: "suspicious", p: "adj", d: "可疑的，引起懷疑的", s: "Her behaviour was very suspicious."},
+        {id: 1250, w: "sustain", p: "v", d: "保持，維持，使持續，使繼續", s: "The economy looks set to sustain its growth into next year."},
+        {id: 1251, w: "swing", p: "v", d: "擺動，搖擺，搖晃", s: "He walked briskly along swinging his rolled-up umbrella."},
+        {id: 1252, w: "swing", p: "n", d: "擺動，搖擺，搖晃，搖蕩", s: "He took a wild swing at the ball."},
+        {id: 1253, w: "sword", p: "n", d: "（尤指舊時使用的）劍，刀", s: "The museum displayed an ancient Japanese sword with a beautifully crafted steel blade."},
+        {id: 1254, w: "symbolic", p: "adj", d: "代表的，象徵的", s: "The skull at the bottom of the picture is symbolic of death."},
+        {id: 1255, w: "syndrome", p: "n", d: "併發症，症候群，綜合症狀", s: "Chronic fatigue syndrome can be a debilitating and long-lasting illness for patients."},
+        {id: 1256, w: "synthesis", p: "n", d: "合成", s: "The new drug is the result of a complex synthesis of several chemicals."},
+        {id: 1257, w: "systematic", p: "adj", d: "有條理的，有系統的，有計劃的", s: "We've got to be more systematic in the way that we approach this task."},
+        {id: 1258, w: "tackle", p: "n", d: "（尤指足球或曲棍球中）阻截；鏟球", s: "He was booked for a late tackle on Torres."},
+        {id: 1259, w: "tactic", p: "n", d: "策略，手法", s: "These bomb attacks represent a change of tactics by the terrorists."},
+        {id: 1260, w: "tactical", p: "adj", d: "策略性的，謀略性的", s: "It was a tactical vote."},
+        {id: 1261, w: "taxpayer", p: "n", d: "納稅人", s: "Taxpayers should not have to pay for the failure of private companies."},
+        {id: 1262, w: "tempt", p: "v", d: "引誘，誘惑", s: "The offer of free credit tempted her into buying a new car."},
+        {id: 1263, w: "tenant", p: "n", d: "租戶；佃戶；房客", s: "Tenants are complaining that vital repairs are not being done."},
+        {id: 1264, w: "tender", p: "adj", d: "溫柔的；溫情的；關懷的；慈愛的", s: "He gave her a tender look that showed how much he cared for her."},
+        {id: 1265, w: "tenure", p: "n", d: "佔有；使用權；使用期；任期；保有期", s: "During his tenure as dean, he had a real influence on the students."},
+        {id: 1266, w: "terminal", p: "adj", d: "（疾病）晚期的，末期的", s: "She has terminal cancer."},
+        {id: 1267, w: "terminate", p: "v", d: "（使…）結束，停止，終止", s: "They terminated my contract in October."},
+        {id: 1268, w: "terrain", p: "n", d: "地形，地勢；地帶", s: "The car handles particularly well on rough terrain."},
+        {id: 1269, w: "terrific", p: "adj", d: "極好的", s: "She was offered a terrific opportunity to work abroad for a year."},
+        {id: 1270, w: "testify", p: "v", d: "證明，證實；作證", s: "He testified that he had seen the man leaving the building around the time of the murder."},
+        {id: 1271, w: "testimony", p: "n", d: "（尤指法庭上的）證詞，證言", s: "Some doubts have been expressed about his testimony."},
+        {id: 1272, w: "texture", p: "n", d: "質地；質感；手感", s: "The artist used thick paint to give the canvas a rough texture."},
+        {id: 1273, w: "thankfully", p: "adv", d: "（通常用於句首，表示高興或感激）幸好，幸虧", s: "Thankfully, nobody was hurt."},
+        {id: 1274, w: "theatrical", p: "adj", d: "劇場的；演劇的；戲劇（或歌劇等）劇本編寫的", s: "The actor applied heavy theatrical make-up before going on stage for the show."},
+        {id: 1275, w: "theology", p: "n", d: "神學，宗教信仰學", s: "He went to university to get a degree in theology and religious studies."},
+        {id: 1276, w: "theoretical", p: "adj", d: "理論上的；純理論的", s: "His paper was based on theoretical physics rather than experimental results."},
+        {id: 1277, w: "thereafter", p: "adv", d: "之後，以後", s: "He left the priesthood in 1970 and settled in the Washington area shortly thereafter (= soon after that)."},
+        {id: 1278, w: "thereby", p: "adv", d: "因此，由此；從而", s: "Diets that are high in saturated fat clog up our arteries, thereby reducing the blood flow to our hearts and brains."},
+        {id: 1279, w: "thoughtful", p: "adj", d: "考慮周到的；計劃周密的", s: "He has a thoughtful approach to his work."},
+        {id: 1280, w: "thought-provoking", p: "adj", d: "引人深思的，發人深省的", s: "The documentary was a thought-provoking film that sparked a lot of debate."},
+        {id: 1281, w: "thread", p: "n", d: "線", s: "She used a needle and thread to mend the hole in her shirt."},
+        {id: 1282, w: "threshold", p: "n", d: "門檻", s: "He stepped across the threshold."},
+        {id: 1283, w: "thrilled", p: "adj", d: "極愉快的", s: "I was thrilled that so many people turned up to the party."},
+        {id: 1284, w: "thrive", p: "v", d: "茁壯成長；興旺，繁榮", s: "His business thrived in the years before the war."},
+        {id: 1285, w: "tide", p: "n", d: "潮汐；潮水", s: "We can only go swimming when it is high tide at this beach."},
+        {id: 1286, w: "tighten", p: "v", d: "（使）變緊，（使）緊固", s: "Tighten the straps so they don't rub."},
+        {id: 1287, w: "timber", p: "n", d: "林木；樹木", s: "The company owns a large timber forest which it uses for sustainable logging."},
+        {id: 1288, w: "timely", p: "adj", d: "適時的；及時的", s: "His arrival was a timely reminder that we were already late for the meeting."},
+        {id: 1289, w: "tobacco", p: "n", d: "煙草，煙葉", s: "28 percent of people thought that the advertising of tobacco (= tobacco and products made from it, such as cigarettes) and alcohol should be banned."},
+        {id: 1290, w: "tolerance", p: "n", d: "寬容；忍受；容忍", s: "This period in history is not noted for its religious tolerance."},
+        {id: 1291, w: "tolerate", p: "v", d: "寬容；容忍", s: "I will not tolerate that kind of behaviour in my class."},
+        {id: 1292, w: "toll", p: "n", d: "（道路、橋梁等的）通行費", s: "Tolls are now collected electronically on most motorways."},
+        {id: 1293, w: "top", p: "v", d: "（尤指作為裝飾）在…的上表面", s: "The dessert was topped off with whipped cream and pieces of fruit."},
+        {id: 1294, w: "torture", p: "n", d: "拷打；拷問；折磨；虐待", s: "Half of the prisoners died after torture and starvation."},
+        {id: 1295, w: "torture", p: "v", d: "拷打；拷問；折磨；虐待", s: "It is claimed that the officers tortured a man to death in a city police station."},
+        {id: 1296, w: "toss", p: "v", d: "（隨意地）扔，擲，拋", s: "He glanced at the letter and then tossed it into the bin."},
+        {id: 1297, w: "total", p: "v", d: "總數達；合計為", s: "This is the eighth volume in the series, which totals 21 volumes in all."},
+        {id: 1298, w: "toxic", p: "adj", d: "有毒的；引起中毒的", s: "The factory was fined for illegally dumping toxic waste into the river."},
+        {id: 1299, w: "trace", p: "n", d: "痕跡，蹤跡", s: "He attempted to cover up all the traces of his crime."},
+        {id: 1300, w: "trademark", p: "n", d: "商標", s: "Velcro is a registered trademark."},
+        {id: 1301, w: "trail", p: "n", d: "鄉間（山間或林間等）小道", s: "We followed the narrow hiking trail through the dense forest for several hours."},
+        {id: 1302, w: "trail", p: "v", d: "拖，拉", s: "Katherine, your skirt's trailing in the mud!"},
+        {id: 1303, w: "trailer", p: "n", d: "拖車；掛車", s: "The car was pulling a trailer with a motorcycle on it."},
+        {id: 1304, w: "transaction", p: "n", d: "交易", s: "The entire business transaction was completed online in just a few minutes."},
+        {id: 1305, w: "transcript", p: "n", d: "文字記錄；抄本，文字本", s: "Mysteriously, the transcript of what was said at the trial was lost."},
+        {id: 1306, w: "transformation", p: "n", d: "徹底改觀；大變樣", s: "Local people have mixed feelings about the planned transformation of their town into a regional capital."},
+        {id: 1307, w: "transit", p: "n", d: "運輸；輸送", s: "It is possible to make an insurance claim for any goods lost or damaged in transit."},
+        {id: 1308, w: "transmission", p: "n", d: "（廣播、電視等的）播送，播送內容", s: "We apologize for the interruption to our transmissions this afternoon."},
+        {id: 1309, w: "transparency", p: "n", d: "透明性，透明", s: "The old-fashioned type of plastic lacked transparency."},
+        {id: 1310, w: "transparent", p: "adj", d: "透明的", s: "Grow the bulbs in a transparent plastic box, so the children can see the roots growing."},
+        {id: 1311, w: "trauma", p: "n", d: "精神創傷，心理創傷", s: "He suffered significant emotional trauma after witnessing the terrible car accident."},
+        {id: 1312, w: "treaty", p: "n", d: "條約；協定", s: "The two nations finally signed a peace treaty to end the long-standing conflict."},
+        {id: 1313, w: "tremendous", p: "adj", d: "巨大的；極好的", s: "They were making a tremendous amount of noise last night."},
+        {id: 1314, w: "tribal", p: "adj", d: "部落的；部族的", s: "The museum exhibit showcased beautiful examples of traditional tribal dress and art."},
+        {id: 1315, w: "tribunal", p: "n", d: "（尤指由政府正式選定的）特別法庭，審理委員會", s: "A special war crimes tribunal was established to prosecute the captured leaders."},
+        {id: 1316, w: "tribute", p: "n", d: "（尤指在正式場合表達敬意的）頌詞，禮物", s: "Tributes have been pouring in from all over the world for the famous actor who died yesterday."},
+        {id: 1317, w: "trigger", p: "n", d: "（槍的）扳機", s: "It's not clear who actually pulled the trigger."},
+        {id: 1318, w: "trio", p: "n", d: "三人一組；三件套；三合一", s: "There was disappointment for the trio of 200 metre runners, all of whom failed to reach the final."},
+        {id: 1319, w: "triumph", p: "n", d: "巨大成功；勝利；狂喜", s: "The book celebrates the hostages' remarkable triumph over appalling adversity."},
+        {id: 1320, w: "trophy", p: "n", d: "獎，（流動）獎盃", s: "He's an excellent rider, but he's never won a major trophy."},
+        {id: 1321, w: "troubled", p: "adj", d: "深受折磨的，有麻煩的", s: "The survival package involves selling off the unprofitable parts of the troubled company."},
+        {id: 1322, w: "trustee", p: "n", d: "受託人", s: "The museum's board of trustees is responsible for its financial and operational oversight."},
+        {id: 1323, w: "tuition", p: "n", d: "（尤指一對一或小班進行的）教學，講授，指導", s: "All students receive tuition in logic and metaphysics."},
+        {id: 1324, w: "turnout", p: "n", d: "到場人數；（尤指）投票人數", s: "Good weather on polling day should ensure a good turnout."},
+        {id: 1325, w: "turnover", p: "n", d: "（一定時期內的）營業額，成交量", s: "Large supermarkets have high turnovers (= their goods sell very quickly)."},
+        {id: 1326, w: "twist", p: "v", d: "轉動，旋轉；纏繞，盤繞", s: "The path twists and turns for over a mile."},
+        {id: 1327, w: "twist", p: "n", d: "扭動，轉動", s: "She gave the cap another twist to make sure it was tight."},
+        {id: 1328, w: "undergraduate", p: "n", d: "大學本科生", s: "He is a first-year undergraduate studying physics at the local university."},
+        {id: 1329, w: "underlying", p: "adj", d: "暗含的；深層的；潛在的", s: "And what might be the underlying significance of these supposedly random acts?"},
+        {id: 1330, w: "undermine", p: "v", d: "（常指逐漸地）削弱信心、權威等，損害", s: "The president has accused two cabinet members of working secretly to undermine his position/him."},
+        {id: 1331, w: "undoubtedly", p: "adv", d: "無疑", s: "There is undoubtedly a great deal of truth in what he says."},
+        {id: 1332, w: "unify", p: "v", d: "整合；統一；使成一體", s: "If the new leader does manage to unify his warring party it will be quite an achievement."},
+        {id: 1333, w: "unprecedented", p: "adj", d: "史無前例的，空前的；絕無僅有的", s: "This century has witnessed environmental destruction on an unprecedented scale."},
+        {id: 1334, w: "unveil", p: "v", d: "爲…揭幕", s: "The memorial to those who had died in the war was unveiled by the Queen."},
+        {id: 1335, w: "upcoming", p: "adj", d: "即將發生的", s: "Tickets are selling well for the group's upcoming concert tour."},
+        {id: 1336, w: "upgrade", p: "v", d: "使（機器、電腦程式等）升級；提升，提拔（某人）", s: "It's very simple to upgrade the indexing software."},
+        {id: 1337, w: "upgrade", p: "n", d: "（能提高電腦等效能的）軟體（或設備）", s: "You will need a hardware upgrade to run the latest version of the software."},
+        {id: 1338, w: "uphold", p: "v", d: "支援，維護，贊成（尤指法律上的決議）", s: "As a police officer you are expected to uphold the law whether you agree with it or not."},
+        {id: 1339, w: "utility", p: "n", d: "公用事業；（電、煤氣、鐵路等）公共設施", s: "Remember to pay your monthly utility bills, which include electricity and water."},
+        {id: 1340, w: "utilize", p: "v", d: "使用；利用；應用", s: "The vitamins come in a form that is easily utilized by the body."},
+        {id: 1341, w: "utterly", p: "adv", d: "完全", s: "What an utterly stupid thing to do!"},
+        {id: 1342, w: "vacuum", p: "n", d: "真空", s: "Scientists created a near-perfect vacuum in the chamber for the experiment."},
+        {id: 1343, w: "vague", p: "adj", d: "含糊的，不明確的", s: "I do have a vague memory of meeting her many years ago."},
+        {id: 1344, w: "validity", p: "n", d: "有效性；合法性", s: "The period of validity of the agreement has expired."},
+        {id: 1345, w: "vanish", p: "v", d: "（尤指突然）消失，滅絕", s: "The child vanished while on her way home from school."},
+        {id: 1346, w: "variable", p: "n", d: "變數", s: "The variables in the equation are X, Y, and Z."},
+        {id: 1347, w: "variable", p: "adj", d: "多變的；反復無常的", s: "The bank offers a variable interest rate that can change over time."},
+        {id: 1348, w: "varied", p: "adj", d: "各種各樣的；形形色色的", s: "The restaurant offers a varied menu with dishes from many different countries."},
+        {id: 1349, w: "vein", p: "n", d: "靜脈", s: "The nurse had trouble finding a suitable vein to draw blood from his arm."},
+        {id: 1350, w: "venture", p: "n", d: "（有風險的）企業；投機活動；商業冒險", s: "She advised us to look abroad for more lucrative business ventures."},
+        {id: 1351, w: "venture", p: "v", d: "冒險去（或做）；冒昧地說", s: "She rarely ventured outside, except when she went to stock up on groceries."},
+        {id: 1352, w: "verbal", p: "adj", d: "口頭的；非書面的", s: "We had a verbal agreement, but it is always better to have a written contract."},
+        {id: 1353, w: "verdict", p: "n", d: "（根據事實作出的）意見，決定；（尤指）判決，裁決", s: "The jury reached/returned a unanimous verdict of (not) guilty."},
+        {id: 1354, w: "verify", p: "v", d: "證明；證實", s: "Are you able to verify your account/allegation/report/theory?"},
+        {id: 1355, w: "verse", p: "n", d: "詩；詩歌；韻文", s: "The poet wrote a beautiful verse about the changing of the seasons."},
+        {id: 1356, w: "versus", p: "prep", d: "以…為對手；對", s: "Tomorrow's game is Newcastle versus Arsenal."},
+        {id: 1357, w: "vessel", p: "n", d: "船，艦", s: "A large cargo vessel was slowly making its way into the busy port."},
+        {id: 1358, w: "veteran", p: "n", d: "經驗豐富的人，老手", s: "He is a 20-year veteran of the New York Police Department, with much experience."},
+        {id: 1359, w: "viable", p: "adj", d: "可以實施的；可望成功的", s: "In order to make the company viable, it will unfortunately be necessary to reduce staffing levels."},
+        {id: 1360, w: "vibrant", p: "adj", d: "活躍的；精力充沛的；熱情洋溢的", s: "The city is known for its vibrant nightlife and bustling cultural scene."},
+        {id: 1361, w: "vice", p: "n", d: "墮落，邪惡；不良習氣，惡習", s: "Greed, pride, envy, and lust are considered to be vices."},
+        {id: 1362, w: "vicious", p: "adj", d: "邪惡的；惡毒的；兇暴的", s: "The security guard was attacked by a vicious thug in the dark alley."},
+        {id: 1363, w: "villager", p: "n", d: "村民", s: "Some of the villagers have lived here all their lives."},
+        {id: 1364, w: "violate", p: "v", d: "違反，違背，違犯（尤指法律、協議、原則等）", s: "They were charged with violating federal law."},
+        {id: 1365, w: "violation", p: "n", d: "違反，違背，違犯（尤指法律、協議、原則等）", s: "He claimed that the way he'd been treated was a gross violation of his civil/constitutional/human rights."},
+        {id: 1366, w: "virtue", p: "n", d: "美德；高尚品德", s: "Patience is a virtue."},
+        {id: 1367, w: "vocal", p: "adj", d: "嗓音的；發聲的", s: "She is the lead singer in a band that performs a lot of vocal music."},
+        {id: 1368, w: "vow", p: "v", d: "發誓，立誓", s: "The guerrillas vowed (that) they would overthrow the government."},
+        {id: 1369, w: "vulnerability", p: "n", d: "脆弱的狀態", s: "The system's main vulnerability was its lack of up-to-date security software."},
+        {id: 1370, w: "vulnerable", p: "adj", d: "易受傷的；易受影響（或攻擊）的；脆弱的", s: "I felt very vulnerable, standing there without any clothes on."},
+        {id: 1371, w: "ward", p: "n", d: "病房，病室", s: "He was moved to the psychiatric ward for observation and further treatment."},
+        {id: 1372, w: "warehouse", p: "n", d: "貨倉，倉庫", s: "The goods have been sitting in a warehouse for months because a strike has prevented distribution."},
+        {id: 1373, w: "warfare", p: "n", d: "戰爭；作戰，交戰", s: "The book described the brutal realities of trench warfare during the First World War."},
+        {id: 1374, w: "warrant", p: "n", d: "（由法官或官員簽署的）搜查令，逮捕狀，令狀", s: "The police obtained a search warrant before entering the suspect's apartment."},
+        {id: 1375, w: "warrant", p: "v", d: "使有必要", s: "Obviously what she did was wrong, but I don't think it warranted such a severe punishment."},
+        {id: 1376, w: "warrior", p: "n", d: "（尤指舊時的）武士，勇士", s: "The ancient story tells of a brave warrior who defeated a fearsome dragon."},
+        {id: 1377, w: "weaken", p: "v", d: "（使）虛弱；削弱；（使）衰弱", s: "You could see the poor dog weakening daily as the disease spread through its body."},
+        {id: 1378, w: "weave", p: "v", d: "（在織布機上）織，編，編織", s: "This type of wool is woven into fabric which will make jackets."},
+        {id: 1379, w: "weed", p: "n", d: "雜草；野草", s: "The yard was overgrown with weeds."},
+        {id: 1380, w: "well", p: "n", d: "水井；油井；氣井", s: "The villagers had to dig a new well to find a fresh source of water."},
+        {id: 1381, w: "well-being", p: "n", d: "幸福；安康", s: "People doing yoga benefit from an increased feeling of well-being."},
+        {id: 1382, w: "whatsoever", p: "adv", d: "（用於否定句後表強調）無論怎樣，絲毫，任何", s: "He has no respect for authority whatsoever."},
+        {id: 1383, w: "whereby", p: "adv", d: "由此，從而；藉以", s: "They've set up a plan whereby you can spread the cost over a two-year period."},
+        {id: 1384, w: "whilst", p: "conj", d: "(正式 of while) 在…的時候；與…同時", s: "In the UK it is illegal to drive whilst holding a mobile phone."},
+        {id: 1385, w: "whip", p: "v", d: "迅速拿來；快速拿走", s: "She whipped a handkerchief out of her pocket and wiped his face."},
+        {id: 1386, w: "wholly", p: "adv", d: "完全地；全部地", s: "I wasn't wholly convinced by her explanation."},
+        {id: 1387, w: "widen", p: "v", d: "（使）變寬，加寬；放寬", s: "As it approaches the sea, the river begins to widen (out)."},
+        {id: 1388, w: "widow", p: "n", d: "寡婦，孀婦，遺孀", s: "She gets a widow’s pension."},
+        {id: 1389, w: "width", p: "n", d: "寬度；廣度", s: "It is five metres in width."},
+        {id: 1390, w: "willingness", p: "n", d: "願意，樂意（做某事）", s: "Success in studying depends on a willingness to learn."},
+        {id: 1391, w: "wipe", p: "v", d: "擦，拭，抹", s: "Do you have some paper towels that I can wipe the floor with?"},
+        {id: 1392, w: "wit", p: "n", d: "（說話的）幽默風趣", s: "She was known for her sharp wit and could always make people laugh."},
+        {id: 1393, w: "withdrawal", p: "n", d: "提款，取錢", s: "The bank became suspicious after several large withdrawals were made from his account in a single week."},
+        {id: 1394, w: "workout", p: "n", d: "（身體）鍛煉，訓練", s: "He starts every morning with a light workout to stay active and healthy."},
+        {id: 1395, w: "worship", p: "n", d: "（對上帝或神的）敬奉，信奉", s: "The ancient temple was a central place of worship for the entire community."},
+        {id: 1396, w: "worship", p: "v", d: "敬奉，崇拜，信仰（上帝或神）", s: "On the island the people worshipped different gods."},
+        {id: 1397, w: "worthwhile", p: "adj", d: "值得的；值得花錢（或時間、精力）的", s: "She considers teaching a worthwhile career."},
+        {id: 1398, w: "worthy", p: "adj", d: "值得尊敬的；值得欽佩的；值得支持的", s: "He is unlikely to succeed in getting his bill through Congress, however worthy it is."},
+        {id: 1399, w: "yell", p: "v", d: "（通常指生氣、疼痛或激動時）叫喊，吼叫（著說）", s: "Our neighbours were yelling (obscenities) at each other this morning."},
+        {id: 1400, w: "yield", p: "n", d: "產生；出產；得出", s: "Crop yields have risen steadily."},
+        {id: 1401, w: "yield", p: "v", d: "產生；出產；得出", s: "The company's new strategy is an attempt to yield increased profits this year."},
+        {id: 1402, w: "youngster", p: "n", d: "年輕人；少年", s: "The scheme is for youngsters between the ages of ten and 16."}
+    ];
+
+    let questionBank = [];
+
+    // Helper to find the actual word form in the sentence
+    // This ensures that if the base is "kidnap" but sentence has "kidnapped", we use "kidnapped"
+    function preprocessQuestions() {
+        questionBank = rawData.map(item => {
+            // Remove double quotes often found in CSV imports
+            let cleanSentence = item.s.replace(/^"|"$/g, '').replace(/""/g, '"');
+            let baseForm = item.w;
+            
+            // Default to base form
+            let matchedWord = baseForm;
+
+            // Try to find the conjugated form in the sentence
+            // We look for the word starting with the base form (case insensitive)
+            // e.g. "kidnap" -> finds "kidnapped"
+            const tokens = cleanSentence.split(/[\s,.!?;:()"]+/);
+            
+            // Strategy 1: Look for word starting with base
+            let found = tokens.find(t => t.toLowerCase().startsWith(baseForm.toLowerCase()));
+            
+            // Strategy 2: If not found, and base ends in 'e', look for base minus 'e' (e.g. manipulate -> manipulated)
+            if (!found && baseForm.endsWith('e')) {
+                let stem = baseForm.slice(0, -1);
+                found = tokens.find(t => t.toLowerCase().startsWith(stem.toLowerCase()));
+            }
+
+            // Strategy 3: If not found, and base ends in 'y', look for base minus 'y' (e.g. try -> tries)
+            if (!found && baseForm.endsWith('y')) {
+                let stem = baseForm.slice(0, -1);
+                found = tokens.find(t => t.toLowerCase().startsWith(stem.toLowerCase()));
+            }
+            
+            // Strategy 4: Exact match check (fallback)
+            if (!found) {
+                 found = tokens.find(t => t.toLowerCase() === baseForm.toLowerCase());
+            }
+
+            if (found) {
+                // Remove any trailing non-letter characters that might have stuck
+                matchedWord = found.replace(/[^a-zA-Z-]$/g, '');
+            }
+
+            return {
+                word: matchedWord,
+                baseForm: baseForm,
+                pos: item.p,
+                definition_ch: item.d.replace(/^"|"$/g, ''), // Clean quotes from definition
+                sentence: cleanSentence
+            };
+        });
+    }
+
+    function createBlanks(bank) {
+        bank.forEach(q => {
+            const escapedWord = q.word.replace(/[.*+?^${}()|[]]/g, '\\$&'); 
+            const regex = new RegExp(`\\b${escapedWord}\\b`, 'gi');
+            
+            if (regex.test(q.sentence)) {
+                q.sentence = q.sentence.replace(regex, '_______');
+            } else {
+                 // Fallback if word identification failed slightly (e.g. case mismatch or punctuation)
+                 // Try case insensitive string replace
+                 const lowerSentence = q.sentence.toLowerCase();
+                 const lowerWord = q.word.toLowerCase();
+                 const index = lowerSentence.indexOf(lowerWord);
+                 if (index !== -1) {
+                     q.sentence = q.sentence.substring(0, index) + '_______' + q.sentence.substring(index + lowerWord.length);
+                 }
+            }
+        });
+        return bank;
+    }
+
+    function correctIndefiniteArticles(bank) {
+        const articleRegex = /(?<!\/)\b(a|an)\s+_______/gi;
+        const replacement = 'a/an _______';
+
+        bank.forEach(question => {
+            if (question.sentence.startsWith('A _______')) {
+                question.sentence = question.sentence.replace('A _______', 'A/An _______');
+            } else if (question.sentence.startsWith('An _______')) {
+                question.sentence = question.sentence.replace('An _______', 'A/An _______');
+            } else {
+                question.sentence = question.sentence.replace(articleRegex, replacement);
+            }
+        });
+        return bank;
+    }
+
+    // Initialize Data
+    preprocessQuestions();
+    
+    // Run the blank creation script
+    questionBank = createBlanks(questionBank);
+    
+    // Then run the article correction script
+    questionBank = correctIndefiniteArticles(questionBank);
+
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
+    const endScreen = document.getElementById('end-screen');
+    const questionCounter = document.getElementById('question-counter');
+    const scoreCounter = document.getElementById('score-counter');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const feedbackContainer = document.getElementById('feedback-container');
+    const nextBtn = document.getElementById('next-btn');
+    const finalScore = document.getElementById('final-score');
+    const endComment = document.getElementById('end-comment');
+    const restartBtn = document.getElementById('restart-btn');
+    const returnBtn = document.getElementById('return-btn');
+    const revisionContainer = document.getElementById('revision-container');
+    const revisionList = document.getElementById('revision-list');
+
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let questionsToAttempt = 0;
+    let answeredIncorrectly = false;
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function startGame(num) {
+        questionsToAttempt = Math.min(num, questionBank.length);
+        score = 0;
+        currentQuestionIndex = 0;
+        const shuffledBank = shuffleArray([...questionBank]);
+        currentQuestions = shuffledBank.slice(0, questionsToAttempt);
+
+        revisionContainer.style.display = 'none';
+        startScreen.style.display = 'none';
+        endScreen.style.display = 'none';
+        quizScreen.style.display = 'block';
+
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        answeredIncorrectly = false;
+        feedbackContainer.textContent = '';
+        nextBtn.style.display = 'none';
+        const question = currentQuestions[currentQuestionIndex];
+
+        questionCounter.textContent = `Question: ${currentQuestionIndex + 1} / ${questionsToAttempt}`;
+        scoreCounter.textContent = `Score: ${score}`;
+
+        const blankSpan = `<span class="blank"></span>`;
+        const sentence = question.sentence.replace('_______', blankSpan);
+        questionText.innerHTML = sentence;
+
+        // Check if the blank is at the start of the sentence
+        const cleanSentence = question.sentence.trim().replace(/^['"“]+/, '');
+        const isStartOfSentence = cleanSentence.startsWith('_______') || cleanSentence.startsWith('A/An _______');
+
+        const correctOption = question;
+        const distractors = getDistractors(correctOption);
+
+        const options = shuffleArray([correctOption, ...distractors]);
+
+        optionsContainer.innerHTML = '';
+        options.forEach(option => {
+            const button = document.createElement('button');
+            
+            // If the blank is at the start of the sentence, capitalize the first letter of ALL options
+            let displayWord = option.word;
+            if (isStartOfSentence) {
+                displayWord = displayWord.charAt(0).toUpperCase() + displayWord.slice(1);
+            }
+
+            button.textContent = displayWord;
+            button.classList.add('option-btn');
+            button.dataset.word = option.word; // Keep original word for checking correctness
+            button.dataset.baseForm = option.baseForm;
+            button.dataset.pos = option.pos;
+            button.dataset.definition = option.definition_ch;
+            button.addEventListener('click', checkAnswer);
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function conjugate(base, inflection) {
+        if (!inflection || base === inflection) return base;
+
+        const vowels = "aeiou";
+        const lastChar = base.slice(-1);
+        const secondLastChar = base.slice(-2, -1);
+
+        if (inflection === 's') {
+            if (lastChar === 'y' && !vowels.includes(secondLastChar)) {
+                return base.slice(0, -1) + 'ies';
+            }
+            if (['s', 'x', 'z'].includes(lastChar) || ['sh', 'ch'].includes(base.slice(-2))) {
+                return base + 'es';
+            }
+            return base + 's';
+        }
+        if (inflection === 'd' || inflection === 'ed') {
+            if (lastChar === 'e') {
+                return base + 'd';
+            }
+            if (lastChar === 'y' && !vowels.includes(secondLastChar)) {
+                return base.slice(0, -1) + 'ied';
+            }
+            if (base.length > 1 && !vowels.includes(lastChar) && vowels.includes(secondLastChar) && !['w', 'x', 'y'].includes(lastChar)) {
+                 const thirdLastChar = base.slice(-3,-2);
+                 if (base.length === 2 || !vowels.includes(thirdLastChar)) {
+                    return base + lastChar + 'ed';
+                 }
+            }
+            return base + 'ed';
+        }
+        if (inflection === 'ing') {
+             if (base.endsWith('ie')) {
+                return base.slice(0, -2) + 'ying';
+            }
+            if (lastChar === 'e' && !base.endsWith('ee')) {
+                return base.slice(0, -1) + 'ing';
+            }
+            if (base.length > 1 && !vowels.includes(lastChar) && vowels.includes(secondLastChar) && !['w', 'x', 'y'].includes(lastChar)) {
+                const thirdLastChar = base.slice(-3,-2);
+                if (base.length === 2 || !vowels.includes(thirdLastChar)) {
+                   return base + lastChar + 'ing';
+                }
+            }
+            return base + 'ing';
+        }
+
+        return base;
+    }
+
+    function getDistractors(correctOption) {
+        const distractors = [];
+        const usedBaseForms = new Set([correctOption.baseForm]);
+        let inflection = '';
+
+        // Determine inflection based on the difference between the word in sentence and base form
+        if (correctOption.word !== correctOption.baseForm) {
+            if (correctOption.pos === 'v') {
+                if (correctOption.word.endsWith('s') && !correctOption.word.endsWith('ss')) inflection = 's';
+                else if (correctOption.word.endsWith('ed')) inflection = 'ed';
+                else if (correctOption.word.endsWith('d') && !correctOption.baseForm.endsWith('d')) inflection = 'd';
+                else if (correctOption.word.endsWith('ing')) inflection = 'ing';
+            } else if (correctOption.pos === 'n') {
+                if (correctOption.word.endsWith('ies')) inflection = 's'; // simplistic check for y->ies
+                else if (correctOption.word.endsWith('s') && !correctOption.word.endsWith('ss')) inflection = 's';
+            }
+        }
+
+        const candidates = shuffleArray(questionBank.filter(q => q.pos === correctOption.pos && q.baseForm !== correctOption.baseForm));
+
+        for (const candidate of candidates) {
+            if (distractors.length < 3 && !usedBaseForms.has(candidate.baseForm)) {
+                const distractorBaseForm = candidate.baseForm;
+                const conjugatedWord = conjugate(distractorBaseForm, inflection);
+
+                distractors.push({
+                    word: conjugatedWord,
+                    baseForm: distractorBaseForm,
+                    pos: candidate.pos,
+                    definition_ch: candidate.definition_ch
+                });
+                usedBaseForms.add(distractorBaseForm);
+            }
+        }
+
+        // Fallback if not enough candidates
+        while (distractors.length < 3) {
+            const randomCandidate = questionBank[Math.floor(Math.random() * questionBank.length)];
+            if (!usedBaseForms.has(randomCandidate.baseForm)) {
+                const distractorBaseForm = randomCandidate.baseForm;
+                const conjugatedWord = conjugate(distractorBaseForm, inflection);
+                distractors.push({
+                    word: conjugatedWord,
+                    baseForm: distractorBaseForm,
+                    pos: randomCandidate.pos,
+                    definition_ch: randomCandidate.definition_ch
+                });
+                usedBaseForms.add(distractorBaseForm);
+            }
+        }
+        return distractors;
+    }
+
+    function checkAnswer(e) {
+        const selectedButton = e.target;
+        const selectedWord = selectedButton.dataset.word;
+        const correctWord = currentQuestions[currentQuestionIndex].word;
+
+        const baseForm = selectedButton.dataset.baseForm;
+        const pos = selectedButton.dataset.pos;
+        const definition = selectedButton.dataset.definition;
+        feedbackContainer.textContent = `${baseForm}: (${pos}) ${definition}`;
+
+        if (selectedWord === correctWord) {
+            selectedButton.classList.add('correct');
+            if (!answeredIncorrectly) {
+                score++;
+            }
+            disableOptions();
+            nextBtn.style.display = 'inline-block';
+        } else {
+            selectedButton.classList.add('incorrect');
+            selectedButton.disabled = true;
+            answeredIncorrectly = true;
+        }
+    }
+
+    function disableOptions() {
+        Array.from(optionsContainer.children).forEach(button => {
+            button.disabled = true;
+        });
+    }
+
+    function handleNextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questionsToAttempt) {
+            displayQuestion();
+        } else {
+            endGame();
+        }
+    }
+
+    function endGame() {
+        quizScreen.style.display = 'none';
+        endScreen.style.display = 'block';
+
+        finalScore.textContent = `${score} / ${questionsToAttempt}`;
+        const percentage = (score / questionsToAttempt) * 100;
+
+        let comment = '';
+        if (percentage === 100) {
+            comment = "Flawless! You've mastered these words. Well done!";
+        } else if (percentage >= 80) {
+            comment = "Excellent work! You have a strong command of these words.";
+        } else if (percentage >= 60) {
+            comment = "Good job! A little more revision will make you an expert.";
+        } else if (percentage >= 40) {
+            comment = "Solid effort. Keep practicing to get more familiar with the words.";
+        } else {
+            comment = "A good start. Do some revision and try again to boost your score!";
+        }
+        endComment.textContent = comment;
+
+        displayRevisionList();
+    }
+
+    function displayRevisionList() {
+        revisionContainer.style.display = 'block';
+        revisionList.innerHTML = '';
+
+        currentQuestions.forEach(question => {
+            const item = document.createElement('div');
+            item.classList.add('revision-item');
+
+            let displayWord = question.word;
+            if (question.sentence.startsWith('_______') || question.sentence.startsWith('A/An _______')) {
+                displayWord = displayWord.charAt(0).toUpperCase() + displayWord.slice(1);
+            }
+
+            const fullSentence = question.sentence.replace('_______', `<strong>${displayWord}</strong>`);
+
+            item.innerHTML = `
+                <p class="word-info">${question.baseForm} <span>(${question.pos}) ${question.definition_ch}</span></p>
+                <p class="sentence-info">${fullSentence}</p>
+            `;
+            revisionList.appendChild(item);
+        });
+    }
+
+    function resetToTitle() {
+        endScreen.style.display = 'none';
+        quizScreen.style.display = 'none';
+        startScreen.style.display = 'block';
+    }
+
+    nextBtn.addEventListener('click', handleNextQuestion);
+    restartBtn.addEventListener('click', resetToTitle);
+    returnBtn.addEventListener('click', resetToTitle);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        startScreen.style.display = 'block';
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    });
+
+</script>
+
+
+
+</body></html>
