@@ -381,10 +381,10 @@
         text-align: center;
     }
 
-    /* Mobile Responsiveness */
+    /* Mobile Responsiveness - Modified for Compact View */
     @media (max-width: 600px) {
         .app-container {
-            padding: 25px 20px;
+            padding: 15px 12px; /* Reduced padding */
             border-radius: 0;
             min-height: 100vh;
             border: none;
@@ -392,53 +392,89 @@
         body {
             padding: 0;
         }
+
+        /* Compact Header */
+        header {
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        header h1 {
+            font-size: 0.75rem;
+        }
         header h2 {
-            font-size: 1.6rem;
+            font-size: 1.3rem; /* Smaller title */
+            margin: 5px 0;
+        }
+        header p {
+            font-size: 0.8rem;
         }
         
-        /* Revised Quiz Header for Mobile */
+        /* Compact Quiz Header */
         #quiz-screen .quiz-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
-            gap: 10px 15px; /* row gap 10px, col gap 15px */
-            padding: 15px;
+            gap: 8px; /* Reduced gap */
+            padding: 8px 12px; /* Reduced padding */
+            margin-bottom: 15px; /* Reduced margin */
         }
 
         #question-counter {
             grid-column: 1;
             grid-row: 1;
             text-align: left;
+            font-size: 0.8rem;
         }
 
         #score-counter {
             grid-column: 2;
             grid-row: 1;
             text-align: right;
+            font-size: 0.8rem;
         }
 
         #return-btn {
-            grid-column: 1 / -1; /* Span full width */
+            grid-column: 1 / -1; 
             grid-row: 2;
             width: 100%;
-            margin-top: 5px;
+            margin-top: 2px;
+            padding: 6px 12px; /* Slimmer button */
+            font-size: 0.8rem;
         }
 
+        /* Compact Question Text */
         #question-text {
-            font-size: 1.25rem;
-        }
-        #options-container {
-            grid-template-columns: 1fr;
-        }
-        .option-btn {
-            padding: 16px;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            margin: 10px 0 20px 0; /* Significantly reduced margins */
+            min-height: auto; /* Remove fixed height to save space */
+            line-height: 1.4;
         }
         .blank {
-            width: 80px;
+            width: 70px;
         }
+
+        /* Compact Options */
+        #options-container {
+            grid-template-columns: 1fr;
+            gap: 10px; /* Reduced gap between buttons */
+            margin-bottom: 15px;
+        }
+        .option-btn {
+            padding: 12px 15px; /* Slimmer buttons */
+            font-size: 0.95rem;
+        }
+
+        /* Compact Feedback */
+        #feedback-container {
+            min-height: 40px;
+            margin-top: 15px;
+            padding: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* Compact Start Screen Buttons */
         .question-count-options .btn {
-            padding: 10px 20px;
+            padding: 10px 15px;
             flex: 1 1 30%;
         }
     }
@@ -710,7 +746,7 @@
         {id: 910, w: "peasant", p: "n", d: "（通常指舊時或貧窮國家的）農民，農夫", s: "Tons of internationally donated food was distributed to the starving peasants."},
         {id: 911, w: "peculiar", p: "adj", d: "奇怪的，古怪的", s: "She has the most peculiar ideas."},
         {id: 912, w: "persist", p: "v", d: "持續；存留", s: "If the pain persists, consult a doctor."},
-        {id: 913, w: "persistent", p: "adj", d: "持續的；存留的；頑強存在的", s: "He has had a persistent cough for several weeks now."},
+        {id: 913, w: "persistent", p: "adj", d: "持續的；存留的；頑強存在的", s: "He has a persistent cough for several weeks now."},
         {id: 914, w: "personnel", p: "n", d: "（公司、組織或軍隊的）全體人員，員工，職員", s: "The new director is likely to make major changes in personnel."},
         {id: 915, w: "petition", p: "n", d: "請願書", s: "I signed a petition against the proposed closure of the local hospital today."},
         {id: 916, w: "philosopher", p: "n", d: "哲學家", s: "Plato was a Greek philosopher."},
