@@ -105,11 +105,6 @@
         font-weight: 700;
         background: linear-gradient(to right, #fff, #cbd5e1);
         -webkit-background-clip: text;
-> **Integrating the Compact Styles**
-> 
-> I'm now putting the optimized CSS into the `<style>` tag, replacing the previous code, to apply the smaller padding, font sizes, and adjustments. The JavaScript functions and the 702-1402 word set will be untouched, ensuring all quiz functionalities are retained. After this integration, the HTML file will be ready.
-> 
-> 
         -webkit-text-fill-color: transparent;
     }
 
@@ -1556,6 +1551,14 @@
                 score++;
             }
             disableOptions();
+            
+            // Logic to change button text on the last question
+            if (currentQuestionIndex === questionsToAttempt - 1) {
+                nextBtn.textContent = "Finish Quiz";
+            } else {
+                nextBtn.textContent = "Next Question";
+            }
+            
             nextBtn.style.display = 'inline-block';
         } else {
             selectedButton.classList.add('incorrect');
